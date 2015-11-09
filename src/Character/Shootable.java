@@ -1,5 +1,5 @@
 package Character;
 
 public interface Shootable {
-	public void shoot();
+	public void shoot(Enemy a);
 }

@@ -18,8 +18,8 @@ public class Tower implements Buyable,Shootable,Upgateable{
 	}
 
 	@Override
-	public void shoot() {
-		// TODO Auto-generated method stub
+	public void shoot(Enemy a) {
+		a.damage(attack);
 		
 	}
 
