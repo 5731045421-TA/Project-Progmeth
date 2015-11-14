@@ -10,7 +10,7 @@ import Character.Tower;
 public class Main {
 	
 	public static void main(String[] args) {
-		Tower a = new Tower();
+//		Tower a = new Tower();
 //		Player b = new Player("Player1");
 //		//have 500 money
 //		a.buy(); //-100 = 300

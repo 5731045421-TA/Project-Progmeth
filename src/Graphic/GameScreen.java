@@ -29,7 +29,7 @@ public class GameScreen extends JComponent {
 	public static BufferedImage image = null;
 	static{
 		try {
-			image = ImageIO.read(new File("background.png"));
+			image = ImageIO.read(new File("grass.png"));
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
@@ -45,14 +45,14 @@ public class GameScreen extends JComponent {
 		Graphics2D g2d = (Graphics2D)g;
 		super.paintComponent(g);
 		if(image != null){
-			for(int x  = 0;x <= 1000; x+=205){
-				for(int y =0;y <= 600;y+=205){
+			for(int x  = 0;x <= 1150; x+=50){
+				for(int y =0;y <= 650;y+=50){
 					g2d.drawImage(image, null, x, y);
 				}
 			}
 			
 		}
-		g2d.fillRect(0, 700, 1200, 200);
+		g2d.fillRect(0, 700, 1200, 100);
 		g2d.setColor(Color.BLACK);
 		
 		g2d.setFont(new Font("Tahoma", Font.BOLD, 30));

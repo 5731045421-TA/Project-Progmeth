@@ -18,7 +18,7 @@ public class Resource {
 	static{
 		try{
 			ClassLoader load = Resource.class.getClassLoader();
-			background = ImageIO.read(load.getResource("background.png"));
+			background = ImageIO.read(load.getResource("grass.png"));
 		}
 		catch(IOException e){
 			background = null;
