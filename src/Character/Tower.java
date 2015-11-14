@@ -74,6 +74,16 @@ public class Tower implements Buyable,Shootable,Upgrateable,IRenderable{
 		// TODO Auto-generated method stub
 		return Integer.MAX_VALUE;
 	}
+	@Override
+	public boolean isDestroyed() {
+		// TODO Auto-generated method stub
+		return false;
+	}
+	@Override
+	public boolean isVisible() {
+		// TODO Auto-generated method stub
+		return true;
+	}
 
 
 
