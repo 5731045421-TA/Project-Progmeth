@@ -3,7 +3,7 @@ package Game;
 public class Player {
 	public static int money;
 	private String name;
-	private int life;
+	public static int life;
 	public Player(String name) {
 		this.money = 500;
 		this.name = name;
