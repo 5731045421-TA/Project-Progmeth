@@ -2,24 +2,26 @@ package Game;
 
 public class Player {
 	public static int money;
-	private String name;
+	private static String name;
 	public static int life;
 	public Player(String name) {
-		this.money = 500;
-		this.name = name;
-		this.life = 30;
+		Player.money = 500;
+		Player.name = name;
+		Player.life = 30;
 	}
 	public int getMoney() {
 		return money;
 	}
 	public void setMoney(int money) {
-		this.money = money;
+		if(money<0)money=0;
+		Player.money = money;
 	}
 	public int getLife() {
 		return life;
 	}
 	public void setLife(int life) {
-		this.life = life;
+		if(life<0)life=0;
+		Player.life = life;
 	}
 	public String getName() {
 		return name;

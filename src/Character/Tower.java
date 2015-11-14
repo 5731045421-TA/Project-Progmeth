@@ -3,7 +3,7 @@ package Character;
 import Game.Main;
 import Game.Player;
 
-public class Tower implements Buyable,Shootable,Upgateable{
+public class Tower implements Buyable,Shootable,Upgrateable{
 	protected int attack;
 	protected int radius;
 	protected int price;
@@ -24,7 +24,7 @@ public class Tower implements Buyable,Shootable,Upgateable{
 	}
 
 	@Override
-	public void upgate() {
+	public void upgrate() {
 		Player.money = Player.money - upgradePrice[state];
 		
 	}

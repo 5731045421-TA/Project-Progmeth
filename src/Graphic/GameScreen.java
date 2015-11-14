@@ -26,6 +26,10 @@ import Game.Player;
 
 public class GameScreen extends JComponent {
 
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	public static BufferedImage image = null;
 	static{
 		try {
