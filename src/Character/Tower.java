@@ -8,8 +8,9 @@ import javax.imageio.ImageIO;
 
 import Game.Main;
 import Game.Player;
+import Game.RenderManger;
 import Game.IRenderable;
-import Game.Resource;
+
 
 public class Tower implements Buyable,Shootable,Upgrateable,IRenderable{
 	protected int attack;
@@ -60,7 +61,7 @@ public class Tower implements Buyable,Shootable,Upgrateable,IRenderable{
 	public void draw(Graphics2D g2d) {
 		// TODO Auto-generated method stub
 		try{
-			ClassLoader load = Resource.class.getClassLoader();
+			ClassLoader load = RenderManger.class.getClassLoader();
 			towerImage = ImageIO.read(load.getResource("fileName"));
 		}
 		catch(IOException e){

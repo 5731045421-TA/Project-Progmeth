@@ -9,6 +9,8 @@ import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.awt.Panel;
 import java.awt.Toolkit;
+import java.awt.geom.AffineTransform;
+import java.awt.image.AffineTransformOp;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
@@ -30,19 +32,29 @@ public class GameScreen extends JComponent {
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
-	public static BufferedImage image = null;
+	public static BufferedImage grass = null;
 	public static BufferedImage road = null;
+	public static BufferedImage turret = null;
+	public int a = 0;
 	static{
 		try {
-			image = ImageIO.read(new File("grass.png"));
+			grass = ImageIO.read(new File("grass.png"));
 			road = ImageIO.read(new File("road.png"));
+			turret = ImageIO.read(new File("tower/turret-5-1.png"));
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
 	}	
 	
+	public static AffineTransformOp aop;
+	static{
+		AffineTransform at = new AffineTransform();
+		at.rotate(Math.toRadians(90));
+		aop = new AffineTransformOp(at,AffineTransformOp.TYPE_BICUBIC);
+	}	
 	public GameScreen(){
 		setPreferredSize(new Dimension(1200,800));
+		
 	}
 	
 	@Override
@@ -50,15 +62,15 @@ public class GameScreen extends JComponent {
 		// TODO Auto-generated method stub
 		Graphics2D g2d = (Graphics2D)g;
 		super.paintComponent(g);
-		if(image != null){
+		
 			for(int y  = 0;y < 14; y++){
 				for(int x =0;x < 24;x++){
-					if(Field.getTerrainAt(x,y) == 0)g2d.drawImage(image, null, x*50, y*50);
+					if(Field.getTerrainAt(x,y) == 0)g2d.drawImage(grass, null, x*50, y*50);
 					if(Field.getTerrainAt(x,y) == 1)g2d.drawImage(road, null, x*50, y*50);
 				}
-			}
-			
 		}
+		g2d.drawImage(turret, aop, a++, 300);	
+		g2d.drawImage(turret, aop, (a++)-50, 300);
 		g2d.fillRect(0, 700, 1200, 100);
 		g2d.setColor(Color.BLACK);
 		
