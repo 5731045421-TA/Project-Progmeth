@@ -29,7 +29,7 @@ public class Entity {
 		this.movingDelayCounter=movingDelay;
 		this.isDestroyed=false;
 		this.isDestroyedInNextState=false;
-		field.addEntity(this);
-		calculateNextState();
+//		field.addEntity(this);
+//		calculateNextState();
 	}
 }

@@ -31,7 +31,7 @@ public class Field {
 		return map[x][y];
 	}
 	
-	addEntity(Entity)
+	
 	
 	public void setMap(int[][] map) {
 		this.map = map;
