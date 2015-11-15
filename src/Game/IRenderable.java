@@ -1,4 +1,4 @@
-package Game;
+package Graphic;
 
 import java.awt.Graphics2D;
 

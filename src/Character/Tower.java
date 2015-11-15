@@ -8,8 +8,8 @@ import javax.imageio.ImageIO;
 
 import Game.Main;
 import Game.Player;
-import Game.IRenderable;
-import Game.Resource;
+import Graphic.IRenderable;
+import Graphic.Resource;
 
 public class Tower implements Buyable,Shootable,Upgrateable,IRenderable{
 	protected int attack;
@@ -84,7 +84,7 @@ public class Tower implements Buyable,Shootable,Upgrateable,IRenderable{
 		// TODO Auto-generated method stub
 		return true;
 	}
-
+	
 
 
 }
