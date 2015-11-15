@@ -37,7 +37,7 @@ public class Field {
 		return map;
 	}
 	
-	public boolean outOfField(int x,int y){
+	public static boolean outOfField(int x,int y){
 		if(x>0&&x<24&&y>0&&y<14)return true;
 		return false;
 	}

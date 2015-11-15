@@ -35,12 +35,14 @@ public class GameScreen extends JComponent {
 	public static BufferedImage grass = null;
 	public static BufferedImage road = null;
 	public static BufferedImage turret = null;
-	public int a = 0;
+	public static BufferedImage turret2 = null;
+	public int a,b = 0;
 	static{
 		try {
 			grass = ImageIO.read(new File("grass.png"));
 			road = ImageIO.read(new File("road.png"));
 			turret = ImageIO.read(new File("tower/turret-5-1.png"));
+			turret2 = ImageIO.read(new File("tower/turret-7-1.png"));
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
@@ -69,8 +71,8 @@ public class GameScreen extends JComponent {
 					if(Field.getTerrainAt(x,y) == 1)g2d.drawImage(road, null, x*50, y*50);
 				}
 		}
-		g2d.drawImage(turret, aop, a++, 300);	
-		g2d.drawImage(turret, aop, (a++)-50, 300);
+		if(!outOfField(a,300))g2d.drawImage(turret, aop, a++, 300);	
+		if(!outOfField(b++ -50,300))g2d.drawImage(turret2, aop, (b++)-50, 300);
 		g2d.fillRect(0, 700, 1200, 100);
 		g2d.setColor(Color.BLACK);
 		
@@ -78,6 +80,12 @@ public class GameScreen extends JComponent {
 		g2d.setColor(Color.WHITE);
 		g2d.drawString("Live :"+Player.life, 5, 755);
 	}
+
+	private boolean outOfField(int x, int y) {
+		if(x<0||x>1200||y<0||y>700)return true;
+		return false;
+	}
+	
 	
 	
 	
