@@ -29,7 +29,7 @@ public class Main {
 		JFrame frame = new JFrame("Tank game");
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		
-		JComponent gameScreen = new Graphic.GameScreen();
+		JComponent gameScreen = new GameScreen();
 		
 		frame.getContentPane().add(gameScreen);
 		frame.setVisible(true);

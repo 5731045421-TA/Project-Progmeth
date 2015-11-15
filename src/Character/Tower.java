@@ -8,8 +8,8 @@ import javax.imageio.ImageIO;
 
 import Game.Main;
 import Game.Player;
-import Graphic.IRenderable;
-import Graphic.Resource;
+import Game.IRenderable;
+import Game.Resource;
 
 public class Tower implements Buyable,Shootable,Upgrateable,IRenderable{
 	protected int attack;
