@@ -31,9 +31,11 @@ public class GameScreen extends JComponent {
 	 */
 	private static final long serialVersionUID = 1L;
 	public static BufferedImage image = null;
+	public static BufferedImage road = null;
 	static{
 		try {
 			image = ImageIO.read(new File("grass.png"));
+			road = ImageIO.read(new File("road.png"));
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
@@ -49,9 +51,10 @@ public class GameScreen extends JComponent {
 		Graphics2D g2d = (Graphics2D)g;
 		super.paintComponent(g);
 		if(image != null){
-			for(int x  = 0;x <= 1150; x+=50){
-				for(int y =0;y <= 650;y+=50){
-					g2d.drawImage(image, null, x, y);
+			for(int y  = 0;y < 14; y++){
+				for(int x =0;x < 24;x++){
+					if(Field.getTerrainAt(x,y) == 0)g2d.drawImage(image, null, x*50, y*50);
+					if(Field.getTerrainAt(x,y) == 1)g2d.drawImage(road, null, x*50, y*50);
 				}
 			}
 			

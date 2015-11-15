@@ -1,22 +1,37 @@
 package Game;
 
 public class Field {
-	private int[][] map=new int[14][24];
-	private int stage;
-	public final static int GRASS=-1,WALKWAY=0,ROCK=1,OUTSIDE=2;
+	private static int[][] map =  {
+		{0,0,0,0,0,0,1,0,0,0,0,0,0,0},
+		{0,0,0,0,0,0,1,0,0,0,0,0,0,0},
+		{0,0,0,0,0,0,1,0,0,0,0,0,0,0},
+		{0,0,0,0,0,0,1,0,0,0,0,0,0,0},
+		{0,0,0,0,0,0,1,0,0,0,0,0,0,0},
+		{0,0,0,0,0,0,1,0,0,0,0,0,0,0},
+		{0,0,0,0,0,0,1,0,0,0,0,0,0,0},
+		{0,0,0,0,0,0,1,0,0,0,0,0,0,0},
+		{0,0,0,0,0,0,1,0,0,0,0,0,0,0},
+		{0,0,0,0,0,0,1,0,0,0,0,0,0,0},
+		{0,0,0,0,0,0,1,0,0,0,0,0,0,0},
+		{0,0,0,0,0,0,1,0,0,0,0,0,0,0},
+		{0,0,0,0,0,0,1,0,0,0,0,0,0,0},
+		{0,0,0,0,0,0,1,0,0,0,0,0,0,0},
+		{0,0,0,0,0,0,1,0,0,0,0,0,0,0},
+		{0,0,0,0,0,0,1,0,0,0,0,0,0,0},
+		{0,0,0,0,0,0,1,0,0,0,0,0,0,0},
+		{0,0,0,0,0,0,1,0,0,0,0,0,0,0},
+		{0,0,0,0,0,0,1,0,0,0,0,0,0,0},
+		{0,0,0,0,0,0,1,0,0,0,0,0,0,0},
+		{0,0,0,0,0,0,1,0,0,0,0,0,0,0},
+		{0,0,0,0,0,0,1,0,0,0,0,0,0,0},
+		{0,0,0,0,0,0,1,0,0,0,0,0,0,0},
+		{0,0,0,0,0,0,1,0,0,0,0,0,0,0},
+	};
 	
-	public Field(int stage) {
-		// TODO Auto-generated constructor stub
-		this.stage=stage;
-		switch (stage) {
-		case 1:
-			//map design
-			break;
-
-		default:
-			break;
-		}
-	}
+	private int stage;
+	public final static int GRASS= 0,WALKWAY=1,ROCK=2,OUTSIDE=3;
+	
+	
 
 	public int[][] getMap() {
 		return map;
@@ -27,7 +42,7 @@ public class Field {
 		return false;
 	}
 	
-	public int getTerrainAt(int x,int y){
+	public static int getTerrainAt(int x,int y){
 		return map[x][y];
 	}
 	
