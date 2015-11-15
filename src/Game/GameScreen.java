@@ -34,15 +34,31 @@ public class GameScreen extends JComponent {
 	private static final long serialVersionUID = 1L;
 	public static BufferedImage grass = null;
 	public static BufferedImage road = null;
+	public static BufferedImage heart = null;
+	public static BufferedImage coin = null;
+	public static BufferedImage devil = null;
 	public static BufferedImage turret = null;
 	public static BufferedImage turret2 = null;
+	public static BufferedImage turret3 = null;
+	public static BufferedImage turret4 = null;
+	public static BufferedImage turret5 = null;
+	public static BufferedImage turret6 = null;
+	public static BufferedImage turret7 = null;
 	public int a,b = 0;
 	static{
 		try {
 			grass = ImageIO.read(new File("grass.png"));
 			road = ImageIO.read(new File("road.png"));
-			turret = ImageIO.read(new File("tower/turret-5-1.png"));
-			turret2 = ImageIO.read(new File("tower/turret-7-1.png"));
+			heart = ImageIO.read(new File("heart.png"));
+			coin = ImageIO.read(new File("coin.png"));
+			devil = ImageIO.read(new File("devil.png"));
+			turret = ImageIO.read(new File("tower/turret-1-1.png"));
+			turret2 = ImageIO.read(new File("tower/turret-2-1.png"));
+			turret3 = ImageIO.read(new File("tower/turret-3-1.png"));
+			turret4 = ImageIO.read(new File("tower/turret-4-1.png"));
+			turret5 = ImageIO.read(new File("tower/turret-5-1.png"));
+			turret6 = ImageIO.read(new File("tower/turret-6-1.png"));
+			turret7 = ImageIO.read(new File("tower/turret-7-1.png"));
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
@@ -76,9 +92,29 @@ public class GameScreen extends JComponent {
 		g2d.fillRect(0, 700, 1200, 100);
 		g2d.setColor(Color.BLACK);
 		
-		g2d.setFont(new Font("Tahoma", Font.BOLD, 30));
+		g2d.setFont(new Font("Tahoma", Font.BOLD, 20));
 		g2d.setColor(Color.WHITE);
-		g2d.drawString("Live :"+Player.life, 5, 755);
+		g2d.drawString("Live :"+Player.life, 35,725);
+		g2d.drawImage(heart, null, 10, 705);	
+		g2d.drawString("Money :"+Player.money, 35, 755);
+		g2d.drawImage(coin, null, 10, 735);
+		g2d.drawString("Wave :  0/7", 35, 785);
+		g2d.drawImage(devil, null, 10, 765);
+		g2d.setFont(new Font("Tahoma", Font.PLAIN, 15));
+		g2d.drawString("$100", 355, 725);
+		g2d.drawString("$150", 430, 725);
+		g2d.drawString("$200", 505, 725);
+		g2d.drawString("$250", 580, 725);
+		g2d.drawString("$300", 655, 725);
+		g2d.drawString("$400", 730, 725);
+		g2d.drawString("$500", 805, 725);
+		g2d.drawImage(turret, null, 350, 725);	
+		g2d.drawImage(turret2, null, 425, 725);
+		g2d.drawImage(turret3, null, 500, 725);
+		g2d.drawImage(turret4, null, 575, 725);
+		g2d.drawImage(turret5, null, 650, 725);
+		g2d.drawImage(turret6, null, 725, 725);
+		g2d.drawImage(turret7, null, 800, 725);
 	}
 
 	private boolean outOfField(int x, int y) {
