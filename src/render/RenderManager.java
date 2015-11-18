@@ -17,16 +17,37 @@ import javax.imageio.ImageIO;
 
 
 public class RenderManager {
-	public static BufferedImage grass;
-	public static BufferedImage road;
+	static ClassLoader loader = GameScreen.class.getClassLoader();
+	public static BufferedImage grass = null;
+	public static BufferedImage road = null;
+	public static BufferedImage heart = null;
+	public static BufferedImage coin = null;
+	public static BufferedImage devil = null;
+	public static BufferedImage turret = null;
+	public static BufferedImage turret2 = null;
+	public static BufferedImage turret3 = null;
+	public static BufferedImage turret4 = null;
+	public static BufferedImage turret5 = null;
+	public static BufferedImage turret6 = null;
+	public static BufferedImage turret7 = null;
+	public static BufferedImage stat = null;
 	static{
 		try {
-			ClassLoader loader = RenderManager.class.getClassLoader();
 			grass = ImageIO.read(loader.getResource("grass.png"));
+			stat = ImageIO.read(loader.getResource("stat.png"));
 			road = ImageIO.read(loader.getResource("road.png"));
-		} catch (Exception e) {
-			grass = null;
-			road = null;
+			heart = ImageIO.read(loader.getResource("heart.png"));
+			coin = ImageIO.read(loader.getResource("coin.png"));
+			devil = ImageIO.read(loader.getResource("devil.png"));
+			turret = ImageIO.read(loader.getResource("tower/turret-1-1.png"));
+			turret2 = ImageIO.read(loader.getResource("tower/turret-2-1.png"));
+			turret3 = ImageIO.read(loader.getResource("tower/turret-3-1.png"));
+			turret4 = ImageIO.read(loader.getResource("tower/turret-4-1.png"));
+			turret5 = ImageIO.read(loader.getResource("tower/turret-5-1.png"));
+			turret6 = ImageIO.read(loader.getResource("tower/turret-6-1.png"));
+			turret7 = ImageIO.read(loader.getResource("tower/turret-7-1.png"));
+		} catch (IOException e) {
+			e.printStackTrace();
 		}
 	}
 	
