@@ -71,7 +71,7 @@ public class GameScreen extends JComponent {
 		aop = new AffineTransformOp(at,AffineTransformOp.TYPE_BICUBIC);
 	}	
 	public GameScreen(){
-		setPreferredSize(new Dimension(1200,800));
+		setPreferredSize(new Dimension(1200,700));
 		
 	}
 	
@@ -81,7 +81,7 @@ public class GameScreen extends JComponent {
 		Graphics2D g2d = (Graphics2D)g;
 		super.paintComponent(g);
 		
-			for(int y  = 0;y < 14; y++){
+			for(int y  = 0;y < 12; y++){
 				for(int x =0;x < 24;x++){
 					if(Field.getTerrainAt(x,y) == 0)g2d.drawImage(grass, null, x*50, y*50);
 					if(Field.getTerrainAt(x,y) == 1)g2d.drawImage(road, null, x*50, y*50);
@@ -89,36 +89,36 @@ public class GameScreen extends JComponent {
 		}
 		if(!outOfField(a,300))g2d.drawImage(turret, aop, a++, 300);	
 		if(!outOfField(b++ -50,300))g2d.drawImage(turret2, aop, (b++)-50, 300);
-		g2d.fillRect(0, 700, 1200, 100);
+		g2d.fillRect(0, 600, 1200, 100);
 		g2d.setColor(Color.BLACK);
 		
 		g2d.setFont(new Font("Tahoma", Font.BOLD, 20));
 		g2d.setColor(Color.WHITE);
-		g2d.drawString("Live :"+Player.life, 35,725);
-		g2d.drawImage(heart, null, 10, 705);	
-		g2d.drawString("Money :"+Player.money, 35, 755);
-		g2d.drawImage(coin, null, 10, 735);
-		g2d.drawString("Wave :  0/7", 35, 785);
-		g2d.drawImage(devil, null, 10, 765);
+		g2d.drawString("Live :"+Player.life, 35,625);
+		g2d.drawImage(heart, null, 10, 605);	
+		g2d.drawString("Money :"+Player.money, 35, 655);
+		g2d.drawImage(coin, null, 10, 635);
+		g2d.drawString("Wave :  0/7", 35, 685);
+		g2d.drawImage(devil, null, 10, 665);
 		g2d.setFont(new Font("Tahoma", Font.PLAIN, 15));
-		g2d.drawString("$100", 355, 725);
-		g2d.drawString("$150", 430, 725);
-		g2d.drawString("$200", 505, 725);
-		g2d.drawString("$250", 580, 725);
-		g2d.drawString("$300", 655, 725);
-		g2d.drawString("$400", 730, 725);
-		g2d.drawString("$500", 805, 725);
-		g2d.drawImage(turret, null, 350, 725);	
-		g2d.drawImage(turret2, null, 425, 725);
-		g2d.drawImage(turret3, null, 500, 725);
-		g2d.drawImage(turret4, null, 575, 725);
-		g2d.drawImage(turret5, null, 650, 725);
-		g2d.drawImage(turret6, null, 725, 725);
-		g2d.drawImage(turret7, null, 800, 725);
+		g2d.drawString("$100", 355, 625);
+		g2d.drawString("$150", 430, 625);
+		g2d.drawString("$200", 505, 625);
+		g2d.drawString("$250", 580, 625);
+		g2d.drawString("$300", 655, 625);
+		g2d.drawString("$400", 730, 625);
+		g2d.drawString("$500", 805, 625);
+		g2d.drawImage(turret, null, 350, 625);	
+		g2d.drawImage(turret2, null, 425, 625);
+		g2d.drawImage(turret3, null, 500, 625);
+		g2d.drawImage(turret4, null, 575, 625);
+		g2d.drawImage(turret5, null, 650, 625);
+		g2d.drawImage(turret6, null, 725, 625);
+		g2d.drawImage(turret7, null, 800, 625);
 	}
 
 	private boolean outOfField(int x, int y) {
-		if(x<0||x>1200||y<0||y>700)return true;
+		if(x<0||x>1200||y<0||y>600)return true;
 		return false;
 	}
 	
