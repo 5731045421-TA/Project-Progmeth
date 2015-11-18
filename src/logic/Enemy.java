@@ -1,4 +1,6 @@
-package Character;
+package logic;
+
+import Interface.Damageable;
 
 public class Enemy implements Damageable{
 	private int hp;

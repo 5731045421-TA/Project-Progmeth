@@ -1,4 +1,4 @@
-package Game;
+package render;
 
 import java.awt.BorderLayout;
 import java.awt.Color;
@@ -23,7 +23,8 @@ import javax.swing.JPanel;
 
 import com.sun.prism.Image;
 
-import Game.Player;
+import logic.Field;
+import logic.Player;
 
 
 public class GameScreen extends JComponent {

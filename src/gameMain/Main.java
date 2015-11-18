@@ -1,10 +1,11 @@
-package Game;
+package gameMain;
 
 import javax.swing.JComponent;
 import javax.swing.JFrame;
 
-import Character.Enemy;
-import Character.Tower;
+import logic.Enemy;
+import logic.Tower;
+import render.GameScreen;
 
 
 

@@ -1,4 +1,4 @@
-package Character;
+package logic;
 
 import java.awt.Graphics2D;
 import java.awt.image.BufferedImage;
@@ -6,10 +6,12 @@ import java.io.IOException;
 
 import javax.imageio.ImageIO;
 
-import Game.Main;
-import Game.Player;
-import Game.RenderManger;
-import Game.IRenderable;
+import Interface.Buyable;
+import Interface.Shootable;
+import Interface.Upgrateable;
+import gameMain.Main;
+import render.IRenderable;
+import render.RenderManager;
 
 
 public class Tower implements Buyable,Shootable,Upgrateable,IRenderable{
@@ -61,7 +63,7 @@ public class Tower implements Buyable,Shootable,Upgrateable,IRenderable{
 	public void draw(Graphics2D g2d) {
 		// TODO Auto-generated method stub
 		try{
-			ClassLoader load = RenderManger.class.getClassLoader();
+			ClassLoader load = RenderManager.class.getClassLoader();
 			towerImage = ImageIO.read(load.getResource("fileName"));
 		}
 		catch(IOException e){

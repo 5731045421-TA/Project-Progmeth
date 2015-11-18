@@ -1,4 +1,4 @@
-package Character;
+package Interface;
 
 public interface Upgrateable {
 	public void upgrate();

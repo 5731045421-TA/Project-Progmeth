@@ -1,4 +1,4 @@
-package Character;
+package Interface;
 
 public interface Buyable {
 	public void buy();

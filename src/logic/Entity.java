@@ -1,7 +1,4 @@
-package Character;
-
-import Game.Field;
-
+package logic;
 
 public class Entity {
 	public static final int WEST=0,NORTH=1,EAST=2,SOUTH=3;

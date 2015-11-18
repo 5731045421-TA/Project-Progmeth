@@ -1,4 +1,4 @@
-package Game;
+package logic;
 
 public class Player {
 	public static int money;

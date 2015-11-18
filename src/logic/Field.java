@@ -1,4 +1,4 @@
-package Game;
+package logic;
 
 public class Field {
 	private static int[][] map =  {

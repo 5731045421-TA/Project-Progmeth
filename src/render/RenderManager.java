@@ -1,4 +1,4 @@
-package Game;
+package render;
 
 import java.applet.Applet;
 import java.applet.AudioClip;
@@ -16,12 +16,12 @@ import javax.imageio.ImageIO;
 
 
 
-public class RenderManger {
+public class RenderManager {
 	public static BufferedImage grass;
 	public static BufferedImage road;
 	static{
 		try {
-			ClassLoader loader = RenderManger.class.getClassLoader();
+			ClassLoader loader = RenderManager.class.getClassLoader();
 			grass = ImageIO.read(loader.getResource("grass.png"));
 			road = ImageIO.read(loader.getResource("road.png"));
 		} catch (Exception e) {
@@ -35,7 +35,7 @@ public class RenderManger {
 	
 	
 
-	public RenderManger() {
+	public RenderManager() {
 		entities = new ArrayList<IRenderable>();
 	}
 
