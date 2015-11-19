@@ -1,5 +1,6 @@
 package render;
 
+import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.util.ArrayList;
 
@@ -10,9 +11,10 @@ import com.sun.xml.internal.stream.Entity;
 import Interface.Damageable;
 import Interface.IRenderable;
 import Interface.Upgrateable;
+import gameMain.Main;
 import logic.Enemy;
 
-public class Spawn extends JComponent implements Damageable, Upgrateable, IRenderable {
+public class Spawn extends JComponent {
 
 	/**
 	 * 
@@ -27,7 +29,9 @@ public class Spawn extends JComponent implements Damageable, Upgrateable, IRende
 		this.state=state;
 		switch (state) {
 		case 1:
-			//for(Entity)//POJ is doing
+			for(int i=0;i<4;i++){
+				enemys.add(new Enemy(1,i));
+			}
 			break;
 
 		default:
@@ -36,44 +40,13 @@ public class Spawn extends JComponent implements Damageable, Upgrateable, IRende
 	}
 
 	@Override
-	public void draw(Graphics2D g2d) {
+	protected void paintComponent(Graphics g) {
 		// TODO Auto-generated method stub
-
-	}
-
-	@Override
-	public int getZ() {
-		// TODO Auto-generated method stub
-		return 0;
-	}
-
-	@Override
-	public boolean isDestroyed() {
-		// TODO Auto-generated method stub
-		return false;
-	}
-
-	@Override
-	public void upgrate() {
-		// TODO Auto-generated method stub
-
-	}
-
-	@Override
-	public boolean canUpgrade() {
-		// TODO Auto-generated method stub
-		return false;
-	}
-
-	@Override
-	public void damage(int attack) {
-		// TODO Auto-generated method stub
-
-	}
-
-	@Override
-	public boolean isDead() {
-		// TODO Auto-generated method stub
-		return false;
+		Graphics2D g2d=(Graphics2D)g;
+		super.paintComponent(g);
+		
+		if(outOfField(a,300)){
+			g2d.drawImage(RenderManager.e, xform, obs)
+		}
 	}
 }

@@ -34,6 +34,10 @@ public class RenderManager {
 	public static BufferedImage turret6 = null;
 	public static BufferedImage turret7 = null;
 	public static BufferedImage stat = null;
+	
+	public static BufferedImage creep1=null;
+	public static BufferedImage creep2=null;
+	public static BufferedImage creep3=null
 	static{
 		try {
 			grass = ImageIO.read(new File("grass.png"));
@@ -49,6 +53,10 @@ public class RenderManager {
 			turret5 = ImageIO.read(new File("tower/turret-5-1.png"));
 			turret6 = ImageIO.read(new File("tower/turret-6-1.png"));
 			turret7 = ImageIO.read(new File("tower/turret-7-1.png"));
+			
+			creep1=ImageIO.read(new File("creep1.png"));
+			creep2=ImageIO.read(new File("creep2.png"));
+			creep3=ImageIO.read(new File("creep3.png"));
 		} catch (IOException e) {
 			e.printStackTrace();
 		}

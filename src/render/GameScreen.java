@@ -179,13 +179,13 @@ public class GameScreen extends JComponent {
 		Field.drawMap(g,Field.map);
 		if(!outOfField(a,300)){
 			g2d.drawImage(RenderManager.turret, aop, a++, 300);	
-			System.out.println("here");
+			//System.out.println("here");
 		}
 		if(!outOfField(b++ -50,300))g2d.drawImage(RenderManager.turret2, aop, (b++)-50, 300);
 		drawStatusBar(g);
 	}
 
-	private boolean outOfField(int x, int y) {
+	public boolean outOfField(int x, int y) {
 		if(x<0||x>1200||y<0||y>600)return true;
 		return false;
 	}
