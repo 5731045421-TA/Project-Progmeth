@@ -146,7 +146,7 @@ public class GameScreen extends JComponent {
 		if (x < 0 || x > 1200 || y < 0 || y > 600)
 			return true;
 		return false;
-	}
+	} 
 
 	public void drawStatusBar(Graphics g) {
 		Graphics2D g2d = (Graphics2D) g;

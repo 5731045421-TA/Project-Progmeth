@@ -9,7 +9,7 @@ public class InputUtility {
 	private static boolean[] keyTriggered = new boolean[256];
 	
 	public static int getMouseX() {
-		return mouseX;
+		return mouseX; 
 	}
 	public static void setMouseX(int mouseX) {
 		InputUtility.mouseX = mouseX;

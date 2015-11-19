@@ -28,7 +28,7 @@ public class RenderManager {
 	public static BufferedImage devil = null;
 	public static BufferedImage[] turret = new BufferedImage[7];
 	public static BufferedImage stat = null;
-	static{
+	static{ 
 		try {
 			grass = ImageIO.read(new File("grass.png"));
 			stat = ImageIO.read(new File("stat.png"));

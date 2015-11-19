@@ -33,7 +33,7 @@ public class Field {
 		{0,0,0,0,0,0,1,0,0,0,0,0},
 		{0,0,0,0,0,0,1,0,0,0,0,0},
 	};
-	
+	 
 	private int stage;
 	public final static int GRASS= 0,WALKWAY=1,ROCK=2,OUTSIDE=3;
 	
