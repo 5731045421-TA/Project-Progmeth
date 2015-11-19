@@ -1,35 +1,20 @@
 package render;
 
 import java.awt.AlphaComposite;
-import java.awt.BorderLayout;
 import java.awt.Color;
-import java.awt.Component;
 import java.awt.Dimension;
 import java.awt.Font;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
-import java.awt.Panel;
 import java.awt.Point;
 import java.awt.Rectangle;
-import java.awt.Toolkit;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.awt.event.MouseMotionListener;
 import java.awt.geom.AffineTransform;
 import java.awt.image.AffineTransformOp;
-import java.awt.image.BufferedImage;
-import java.io.File;
-import java.io.IOException;
-
-import javax.imageio.ImageIO;
 import javax.swing.JButton;
 import javax.swing.JComponent;
-import javax.swing.JFrame;
-import javax.swing.JPanel;
-
-import com.sun.prism.Image;
-import com.sun.xml.internal.bind.v2.runtime.unmarshaller.Loader;
-
 import input.InputUtility;
 import logic.Field;
 import logic.Player;
@@ -131,22 +116,19 @@ public class GameScreen extends JComponent {
 		Graphics2D g2d = (Graphics2D) g;
 		super.paintComponent(g);
 
+
 		Field.drawMap(g, Field.map);
-		if (!outOfField(a, 300)) {
+		if (!Field.outOfField(a, 300)) {
 			g2d.drawImage(RenderManager.turret[0], aop, a++, 300);
+
 		}
-		if (!outOfField(b++ - 50, 300))
+		
+		if (!Field.outOfField(b++-50, 300))
 			g2d.drawImage(RenderManager.turret[6], aop, (b++) - 50, 300);
 		drawStatusBar(g);
 		drawClickImage(g);
 		//addTurret(g);
 	}
-
-	private boolean outOfField(int x, int y) {
-		if (x < 0 || x > 1200 || y < 0 || y > 600)
-			return true;
-		return false;
-	} 
 
 	public void drawStatusBar(Graphics g) {
 		Graphics2D g2d = (Graphics2D) g;
