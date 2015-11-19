@@ -26,13 +26,7 @@ public class RenderManager {
 	public static BufferedImage heart = null;
 	public static BufferedImage coin = null;
 	public static BufferedImage devil = null;
-	public static BufferedImage turret = null;
-	public static BufferedImage turret2 = null;
-	public static BufferedImage turret3 = null;
-	public static BufferedImage turret4 = null;
-	public static BufferedImage turret5 = null;
-	public static BufferedImage turret6 = null;
-	public static BufferedImage turret7 = null;
+	public static BufferedImage[] turret = new BufferedImage[7];
 	public static BufferedImage stat = null;
 	static{
 		try {
@@ -42,13 +36,13 @@ public class RenderManager {
 			heart = ImageIO.read(new File("heart.png"));
 			coin = ImageIO.read(new File("coin.png"));
 			devil = ImageIO.read(new File("devil.png"));
-			turret = ImageIO.read(new File("tower/turret-1-1.png"));
-			turret2 = ImageIO.read(new File("tower/turret-2-1.png"));
-			turret3 = ImageIO.read(new File("tower/turret-3-1.png"));
-			turret4 = ImageIO.read(new File("tower/turret-4-1.png"));
-			turret5 = ImageIO.read(new File("tower/turret-5-1.png"));
-			turret6 = ImageIO.read(new File("tower/turret-6-1.png"));
-			turret7 = ImageIO.read(new File("tower/turret-7-1.png"));
+			turret[0] = ImageIO.read(new File("tower/turret-1-1.png"));
+			turret[1] = ImageIO.read(new File("tower/turret-2-1.png"));
+			turret[2] = ImageIO.read(new File("tower/turret-3-1.png"));
+			turret[3] = ImageIO.read(new File("tower/turret-4-1.png"));
+			turret[4] = ImageIO.read(new File("tower/turret-5-1.png"));
+			turret[5] = ImageIO.read(new File("tower/turret-6-1.png"));
+			turret[6] = ImageIO.read(new File("tower/turret-7-1.png"));
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
