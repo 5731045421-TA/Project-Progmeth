@@ -111,49 +111,56 @@ public class GameScreen extends JComponent {
 			public void mouseClicked(MouseEvent e) {
 				 if (RenderManager.turret != null&& imgPoint != null ) {
                      Point me = e.getPoint();
-                     Rectangle bounds = new Rectangle(imgPoint, new Dimension(RenderManager.turret.getWidth(), RenderManager.turret.getHeight()));
+                     Rectangle bounds = new Rectangle(imgPoint, 
+                    		 new Dimension(RenderManager.turret.getWidth(), RenderManager.turret.getHeight()));
                      if (bounds.contains(me)) {
                          System.out.println("turret was clicked!");
                      }
                  }
 				 if (RenderManager.turret2 != null&& imgPoint2 != null ) {
                      Point me = e.getPoint();
-                     Rectangle bounds = new Rectangle(imgPoint2, new Dimension(RenderManager.turret2.getWidth(), RenderManager.turret2.getHeight()));
+                     Rectangle bounds = new Rectangle(imgPoint2, 
+                    		 new Dimension(RenderManager.turret2.getWidth(), RenderManager.turret2.getHeight()));
                      if (bounds.contains(me)) {
                          System.out.println("turret2 was clicked!");
                      }
                  }
 				 if (RenderManager.turret3 != null&& imgPoint3 != null ) {
                      Point me = e.getPoint();
-                     Rectangle bounds = new Rectangle(imgPoint3, new Dimension(RenderManager.turret3.getWidth(), RenderManager.turret3.getHeight()));
+                     Rectangle bounds = new Rectangle(imgPoint3, 
+                    		 new Dimension(RenderManager.turret3.getWidth(), RenderManager.turret3.getHeight()));
                      if (bounds.contains(me)) {
                          System.out.println("turret3 was clicked!");
                      }
                  }
 				 if (RenderManager.turret4 != null&& imgPoint4 != null ) {
                      Point me = e.getPoint();
-                     Rectangle bounds = new Rectangle(imgPoint4, new Dimension(RenderManager.turret4.getWidth(), RenderManager.turret4.getHeight()));
+                     Rectangle bounds = new Rectangle(imgPoint4, 
+                    		 new Dimension(RenderManager.turret4.getWidth(), RenderManager.turret4.getHeight()));
                      if (bounds.contains(me)) {
                          System.out.println("turret4 was clicked!");
                      }
                  }
 				 if (RenderManager.turret5 != null&& imgPoint5 != null ) {
                      Point me = e.getPoint();
-                     Rectangle bounds = new Rectangle(imgPoint5, new Dimension(RenderManager.turret5.getWidth(), RenderManager.turret5.getHeight()));
+                     Rectangle bounds = new Rectangle(imgPoint5, 
+                    		 new Dimension(RenderManager.turret5.getWidth(), RenderManager.turret5.getHeight()));
                      if (bounds.contains(me)) {
                          System.out.println("turret5 was clicked!");
                      }
                  }
 				 if (RenderManager.turret6 != null&& imgPoint6 != null ) {
                      Point me = e.getPoint();
-                     Rectangle bounds = new Rectangle(imgPoint6, new Dimension(RenderManager.turret6.getWidth(), RenderManager.turret6.getHeight()));
+                     Rectangle bounds = new Rectangle(imgPoint6, new Dimension(RenderManager.turret6.getWidth(), 
+                    		 RenderManager.turret6.getHeight()));
                      if (bounds.contains(me)) {
                          System.out.println("turret6 was clicked!");
                      }
                  }
 				 if (RenderManager.turret7 != null&& imgPoint7 != null ) {
                      Point me = e.getPoint();
-                     Rectangle bounds = new Rectangle(imgPoint7, new Dimension(RenderManager.turret7.getWidth(), RenderManager.turret7.getHeight()));
+                     Rectangle bounds = new Rectangle(imgPoint7, new Dimension(RenderManager.turret7.getWidth(), 
+                    		 RenderManager.turret7.getHeight()));
                      if (bounds.contains(me)) {
                          System.out.println("turret7 was clicked!");
                      }
@@ -170,7 +177,10 @@ public class GameScreen extends JComponent {
 		super.paintComponent(g);
 		
 		Field.drawMap(g,Field.map);
-		if(!outOfField(a,300))g2d.drawImage(RenderManager.turret, aop, a++, 300);	
+		if(!outOfField(a,300)){
+			g2d.drawImage(RenderManager.turret, aop, a++, 300);	
+			System.out.println("here");
+		}
 		if(!outOfField(b++ -50,300))g2d.drawImage(RenderManager.turret2, aop, (b++)-50, 300);
 		drawStatusBar(g);
 	}
