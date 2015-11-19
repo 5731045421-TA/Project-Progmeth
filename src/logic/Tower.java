@@ -7,10 +7,10 @@ import java.io.IOException;
 import javax.imageio.ImageIO;
 
 import Interface.Buyable;
+import Interface.IRenderable;
 import Interface.Shootable;
 import Interface.Upgrateable;
 import gameMain.Main;
-import render.IRenderable;
 import render.RenderManager;
 
 

@@ -1,4 +1,4 @@
-package render;
+package Interface;
 
 import java.awt.Graphics2D;
 

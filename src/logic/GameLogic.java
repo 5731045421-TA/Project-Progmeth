@@ -11,7 +11,7 @@
 //	private RenderManager renderableContainer;
 //	private List<Entity> gameObjectContainer;
 //	
-//	private Enemy[][] enemys;
+//	private Enemy[][] enemys=new Enemy[7][7];
 //	private ArrayList<Tower> towers;
 //	
 //	public GameLogic(RenderManager renderableContainer){
@@ -20,7 +20,11 @@
 //	
 //		Field field = new Field();
 //		//renderableContainer.add(field);
-//		tank = new Tank(320,240);
+//		for(int i=0;i<7;i++){
+//			for(int j=0;j<7;j++){
+//				enemys[i][j]=new Enemy();
+//			}
+//		}
 //		mine = new Mine(100,100);
 //		addNewObject(tank);
 //		addNewObject(mine);
