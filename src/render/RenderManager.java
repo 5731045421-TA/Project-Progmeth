@@ -5,6 +5,7 @@ import java.applet.AudioClip;
 import java.awt.Color;
 import java.awt.Graphics2D;
 import java.awt.image.BufferedImage;
+import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Collections;
@@ -33,19 +34,19 @@ public class RenderManager {
 	public static BufferedImage stat = null;
 	static{
 		try {
-			grass = ImageIO.read(loader.getResource("grass.png"));
-			stat = ImageIO.read(loader.getResource("stat.png"));
-			road = ImageIO.read(loader.getResource("road.png"));
-			heart = ImageIO.read(loader.getResource("heart.png"));
-			coin = ImageIO.read(loader.getResource("coin.png"));
-			devil = ImageIO.read(loader.getResource("devil.png"));
-			turret = ImageIO.read(loader.getResource("tower/turret-1-1.png"));
-			turret2 = ImageIO.read(loader.getResource("tower/turret-2-1.png"));
-			turret3 = ImageIO.read(loader.getResource("tower/turret-3-1.png"));
-			turret4 = ImageIO.read(loader.getResource("tower/turret-4-1.png"));
-			turret5 = ImageIO.read(loader.getResource("tower/turret-5-1.png"));
-			turret6 = ImageIO.read(loader.getResource("tower/turret-6-1.png"));
-			turret7 = ImageIO.read(loader.getResource("tower/turret-7-1.png"));
+			grass = ImageIO.read(new File("grass.png"));
+			stat = ImageIO.read(new File("stat.png"));
+			road = ImageIO.read(new File("road.png"));
+			heart = ImageIO.read(new File("heart.png"));
+			coin = ImageIO.read(new File("coin.png"));
+			devil = ImageIO.read(new File("devil.png"));
+			turret = ImageIO.read(new File("tower/turret-1-1.png"));
+			turret2 = ImageIO.read(new File("tower/turret-2-1.png"));
+			turret3 = ImageIO.read(new File("tower/turret-3-1.png"));
+			turret4 = ImageIO.read(new File("tower/turret-4-1.png"));
+			turret5 = ImageIO.read(new File("tower/turret-5-1.png"));
+			turret6 = ImageIO.read(new File("tower/turret-6-1.png"));
+			turret7 = ImageIO.read(new File("tower/turret-7-1.png"));
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
