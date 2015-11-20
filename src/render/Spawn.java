@@ -13,6 +13,7 @@ import Interface.IRenderable;
 import Interface.Upgrateable;
 import gameMain.Main;
 import logic.Enemy;
+import logic.Field;
 
 public class Spawn extends JComponent {
 
@@ -44,9 +45,11 @@ public class Spawn extends JComponent {
 		// TODO Auto-generated method stub
 		Graphics2D g2d=(Graphics2D)g;
 		super.paintComponent(g);
-		
-//		if(outOfField(a,300)){
-//			g2d.drawImage(RenderManager.e, xform, obs)
-//		}
+		System.out.println("kkll");
+		int a = 0,b=0;
+		if(!Field.outOfField(a/50,300/50)){
+			g2d.drawImage(RenderManager.animationCreep1[0][0], null, 6, 6);
+			System.out.println("kk");
+		}
 	}
 }

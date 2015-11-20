@@ -30,9 +30,9 @@ public class RenderManager {
 	public static BufferedImage stat = null;
 
 	
-	public static BufferedImage creep1=null;
-	public static BufferedImage creep2=null;
-	public static BufferedImage creep3=null;
+	public static BufferedImage[][] animationCreep1=null;
+	public static BufferedImage[][] animationCreep2=null;
+	public static BufferedImage[][] animationCreep3=null;
 	static{
 
 		try {
@@ -51,10 +51,21 @@ public class RenderManager {
 			turret[5] = ImageIO.read(new File("tower/turret-6-1.png"));
 			turret[6] = ImageIO.read(new File("tower/turret-7-1.png"));
 			
-			creep1=ImageIO.read(new File("creep1.png"));
-			creep2=ImageIO.read(new File("creep2.png"));
-			creep3=ImageIO.read(new File("creep3.png"));
-
+			BufferedImage creep1=ImageIO.read(new File("creep1.png"));
+			BufferedImage creep2=ImageIO.read(new File("creep2.png"));
+			BufferedImage creep3=ImageIO.read(new File("creep3.png"));
+			
+			animationCreep1=new BufferedImage[4][6];
+			animationCreep2=new BufferedImage[4][6];
+			animationCreep3=new BufferedImage[4][6];
+			
+			for(int i=0;i<animationCreep1.length;i++){
+				for (int j = 0; j < animationCreep1[0].length; j++) {
+					animationCreep1[i][j]=creep1.getSubimage(j*50, i*50, 50, 50);
+					animationCreep2[i][j]=creep2.getSubimage(j*50, i*50, 50, 50);
+					animationCreep3[i][j]=creep3.getSubimage(j*50, i*50, 50, 50);
+				}
+			}
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
