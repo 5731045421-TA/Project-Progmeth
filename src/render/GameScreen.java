@@ -116,18 +116,23 @@ public class GameScreen extends JComponent {
 		Graphics2D g2d = (Graphics2D) g;
 		super.paintComponent(g);
 
-
 		Field.drawMap(g, Field.map);
-		if (!Field.outOfField(a, 300)) {
-			g2d.drawImage(RenderManager.turret[0], aop, a++, 300);
-
-		}
+		int i=0;
+		if(i>=6)i=0;
+		if (!Field.outOfField(a/50, 300/50)) 
+			g2d.drawImage(RenderManager.animationCreep1[0][i], aop, a++, 300);
+		if (!Field.outOfField((a++-50)/50, 300/50))
+			g2d.drawImage(RenderManager.animationCreep2[1][i], aop, (a++)-50, 300);
+		if(!Field.outOfField((a++-150)/50, 300/50))
+			g2d.drawImage(RenderManager.animationCreep1[2][i], null, (a++)-150, 300);
+		if(!Field.outOfField((a++-200)/50, 300/50))
+			g2d.drawImage(RenderManager.animationCreep1[3][i], null, (a++)-200, 300);
+		//if()
 		
-		if (!Field.outOfField(b++-50, 300))
-			g2d.drawImage(RenderManager.turret[6], aop, (b++) - 50, 300);
 		drawStatusBar(g);
 		drawClickImage(g);
 		//addTurret(g);
+		
 	}
 
 	public void drawStatusBar(Graphics g) {

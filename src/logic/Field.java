@@ -55,7 +55,7 @@ public class Field {
 	
 	
 	public void setMap(int[][] map) {
-		this.map = map;
+		Field.map = map;
 	}
 
 	public int getStage() {
@@ -70,6 +70,7 @@ public class Field {
 		Graphics2D g2d = (Graphics2D)g;
 		for(int y  = 0;y < 12; y++){
 			for(int x =0;x < 24;x++){
+				//System.out.println("before");
 				if(Field.getTerrainAt(x,y) == 0)g2d.drawImage(RenderManager.grass, null, x*50, y*50);
 				if(Field.getTerrainAt(x,y) == 1)g2d.drawImage(RenderManager.road, null, x*50, y*50);
 			}

@@ -68,6 +68,7 @@ public class RenderManager {
 			}
 		} catch (IOException e) {
 			e.printStackTrace();
+			System.out.println("can't load image");
 		}
 	}
 	
