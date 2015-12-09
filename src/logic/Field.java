@@ -44,7 +44,7 @@ public class Field {
 	}
 	
 	public static boolean outOfField(int x,int y){
-		if(x>=0&&x<=24&&y>=0&&y<=11)return false;
+		if(x>=0 && x<=24 && y>=0 && y<=11)return false;
 		return true;
 	}
 	

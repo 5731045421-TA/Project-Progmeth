@@ -121,11 +121,11 @@ public class GameScreen extends JComponent {
 		if(i>=6)i=0;
 		if (!Field.outOfField(a/50, 300/50)) 
 			g2d.drawImage(RenderManager.animationCreep1[0][i], aop, a++, 300);
-		if (!Field.outOfField((a++-50)/50, 300/50))
+		if (!Field.outOfField((a-50)/50, 300/50))
 			g2d.drawImage(RenderManager.animationCreep2[1][i], aop, (a++)-50, 300);
-		if(!Field.outOfField((a++-150)/50, 300/50))
+		if(!Field.outOfField((a-150)/50, 300/50))
 			g2d.drawImage(RenderManager.animationCreep1[2][i], null, (a++)-150, 300);
-		if(!Field.outOfField((a++-200)/50, 300/50))
+		if(!Field.outOfField((a-200)/50, 300/50))
 			g2d.drawImage(RenderManager.animationCreep1[3][i], null, (a++)-200, 300);
 		//if()
 		
