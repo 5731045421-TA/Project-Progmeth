@@ -1,19 +1,43 @@
 package logic;
 
+import javax.swing.ImageIcon;
+
 import Interface.Damageable;
 
 public class Enemy implements Damageable{
-	private int hp;
-	private int creepNumber;
-	private int type;
+	public static final Enemy[] enemyList=new Enemy[100];
+	public static final Enemy slime=new EnemySlime(0,10,1).getTextureFile("creep1.png");
 	
+	public int hp;
+	public int creepNumber;
+	public int speed;
 	
-	public Enemy(int creepNumber,int type) {
-		this.setHp(10);
-		this.creepNumber=creepNumber;
-		this.type=type;
+	public String textureFile="";
+	public java.awt.Image texture=null;
+	
+
+	
+	public Enemy(int creepNumber,int health,int speed) {
+		if(enemyList[creepNumber]!=null){
+			System.out.println("[TowerInitialization] Two enemies with same id");
+		}else{
+			enemyList[creepNumber]=this;
+			
+			this.setHp(health);
+			this.creepNumber=creepNumber;
+			
+			this.speed=speed;
+		}
+		
+		
 	}
 
+	public Enemy getTextureFile(String str) {
+		this.textureFile=str;
+		this.texture=new ImageIcon("res/enemy"+this.textureFile).getImage();
+		
+		return this;
+	}
 
 	@Override
 	public void damage(int attack) {

@@ -33,7 +33,6 @@ public class RenderManager {
 	public static BufferedImage[][] animationCreep1=null;
 	public static BufferedImage[][] animationCreep2=null;
 	public static BufferedImage[][] animationCreep3=null;
-	
 	static{
 
 		try {
@@ -56,19 +55,17 @@ public class RenderManager {
 			BufferedImage creep2=ImageIO.read(new File("res/creep2.png"));
 			BufferedImage creep3=ImageIO.read(new File("res/creep3.png"));
 			
-			animationCreep1 =new BufferedImage[4][6];
-			animationCreep2 =new BufferedImage[4][6];
-			animationCreep3 =new BufferedImage[4][6];
+			animationCreep1=new BufferedImage[4][6];
+			animationCreep2=new BufferedImage[4][6];
+			animationCreep3=new BufferedImage[4][6];
 			
 			for(int i=0;i<4;i++){
-				for (int j = 0; j < 4; j++) {
+				for (int j = 0; j < 6; j++) {
 					animationCreep1[i][j]=creep1.getSubimage(j*50, i*50, 50, 50);
 					animationCreep2[i][j]=creep2.getSubimage(j*50, i*50, 50, 50);
 					animationCreep3[i][j]=creep3.getSubimage(j*50, i*50, 50, 50);
 				}
 			}
-			
-			
 		} catch (IOException e) {
 			e.printStackTrace();
 			System.out.println("can't load image");

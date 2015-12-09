@@ -13,11 +13,19 @@ import java.awt.event.MouseListener;
 import java.awt.event.MouseMotionListener;
 import java.awt.geom.AffineTransform;
 import java.awt.image.AffineTransformOp;
+
+import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JComponent;
+
+import com.sun.prism.Image;
+
 import input.InputUtility;
+import logic.Enemy;
+import logic.EnemyMove;
 import logic.Field;
 import logic.Player;
+import logic.Wave;
 
 public class GameScreen extends JComponent {
 
@@ -29,9 +37,16 @@ public class GameScreen extends JComponent {
 	protected static final AlphaComposite transcluentWhite = AlphaComposite.getInstance(AlphaComposite.SRC_OVER, 0.7f);
 	protected static final AlphaComposite opaque = AlphaComposite.getInstance(AlphaComposite.SRC_OVER, 1);
 	private Point imgPoint[] = new Point[7];
-
+	
+	public EnemyMove[] enemyMap =new EnemyMove[200];
+	private int enemies=0;
+	
+	Wave wave;
+	
 	public static AffineTransformOp aop;
-
+	
+	
+	
 	static {
 		AffineTransform at = new AffineTransform();
 		at.rotate(Math.toRadians(90));
@@ -108,6 +123,9 @@ public class GameScreen extends JComponent {
 				}
 			}
 		});
+		
+		wave=new Wave(this);
+		this.wave.waveNumber=0;
 	}
 
 	@Override
@@ -121,18 +139,24 @@ public class GameScreen extends JComponent {
 		if(i>=6)i=0;
 		if (!Field.outOfField(a/50, 300/50)) 
 			g2d.drawImage(RenderManager.animationCreep1[0][i], aop, a++, 300);
-		if (!Field.outOfField((a-50)/50, 300/50))
+		if (!Field.outOfField((a++-50)/50, 300/50))
 			g2d.drawImage(RenderManager.animationCreep2[1][i], aop, (a++)-50, 300);
-		if(!Field.outOfField((a-150)/50, 300/50))
+		if(!Field.outOfField((a++-150)/50, 300/50))
 			g2d.drawImage(RenderManager.animationCreep1[2][i], null, (a++)-150, 300);
-		if(!Field.outOfField((a-200)/50, 300/50))
+		if(!Field.outOfField((a++-200)/50, 300/50))
 			g2d.drawImage(RenderManager.animationCreep1[3][i], null, (a++)-200, 300);
-		//if()
+		
 		
 		drawStatusBar(g);
 		drawClickImage(g);
 		//addTurret(g);
 		
+		//Enemies
+		for(int j=0;j<enemyMap.length;j++){
+			if(enemyMap[j]!=null){
+				g.drawImage(enemyMap[j].enemy.texture, enemyMap[j].xPos+50, enemyMap[j].yPos+50, 50,50,null);
+			}
+		}
 	}
 
 	public void drawStatusBar(Graphics g) {
@@ -209,4 +233,15 @@ public class GameScreen extends JComponent {
 			}
 		}
 	}
+	
+	public void spawnEnemy(){
+		for(int i=0;i<enemyMap.length;i++){
+			if(enemyMap[i]==null){
+				enemyMap[i]=new EnemyMove(Enemy.enemyList[0], level.spawnPoint);
+				break;
+			}
+		}
+	}
+	
+	
 }

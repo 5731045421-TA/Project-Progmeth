@@ -20,7 +20,7 @@ public class Main {
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		
 		gameScreen = new GameScreen();
-		spawn=new Spawn(1);
+		//spawn=new Spawn(1);
 		
 		frame.getContentPane().add(gameScreen);
 		frame.setVisible(true);
