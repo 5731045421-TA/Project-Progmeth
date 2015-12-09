@@ -71,8 +71,13 @@ public class Field {
 		for(int y  = 0;y < 12; y++){
 			for(int x =0;x < 24;x++){
 				//System.out.println("before");
-				if(Field.getTerrainAt(x,y) == 0)g2d.drawImage(RenderManager.grass, null, x*50, y*50);
-				if(Field.getTerrainAt(x,y) == 1)g2d.drawImage(RenderManager.road, null, x*50, y*50);
+				try {
+					if(Field.getTerrainAt(x,y) == 0)g2d.drawImage(RenderManager.grass, null, x*50, y*50);
+					if(Field.getTerrainAt(x,y) == 1)g2d.drawImage(RenderManager.road, null, x*50, y*50);
+				} catch (Exception e) {
+					// TODO Auto-generated catch block
+					//e.printStackTrace();
+				}
 			}
 	}
 	}
