@@ -24,7 +24,7 @@ public class EnemyMove {
 		this.yPos=spawnPoint.getY()*50;
 		
 		this.attack=false;
-		this.health=enemy.getHp();
+		this.health=enemy.getHealth();
 	}
 	
 	public EnemyMove update(){

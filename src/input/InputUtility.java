@@ -7,6 +7,7 @@ public class InputUtility {
 	private static boolean mouseLeftTriggered,mouseRightTriggered;
 	private static boolean[] keyPressed = new boolean[256];
 	private static boolean[] keyTriggered = new boolean[256];
+	//private static boolean isPressEnter;
 	
 	public static int getMouseX() {
 		return mouseX; 
@@ -50,6 +51,10 @@ public class InputUtility {
 	public static void setMouseRightTriggered(boolean mouseRightTriggered) {
 		InputUtility.mouseRightTriggered = mouseRightTriggered;
 	}
-	
-	
+	public static boolean getKeyTriggered(int key){
+		return InputUtility.keyTriggered[key];
+	}
+	public static void setKeyTriggered(int key) {
+		InputUtility.keyTriggered[key]=true;
+	}
 }

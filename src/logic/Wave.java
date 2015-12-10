@@ -6,10 +6,10 @@ public class Wave {
 	GameScreen screen;
 
 	public int waveNumber = 0;
-	public int enemiesThisRound = 7;
-	public int enemiesPerRound = 49;
+	public int enemiesThisRound = 0;
+	public int enemiesPerRound = 10;
 
-	boolean waveSpawning;
+	public boolean waveSpawning;
 
 	public Wave(GameScreen screen) {
 		this.screen = screen;

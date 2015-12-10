@@ -8,6 +8,8 @@ import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.awt.Point;
 import java.awt.Rectangle;
+import java.awt.event.KeyEvent;
+import java.awt.event.KeyListener;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.awt.event.MouseMotionListener;
@@ -126,6 +128,27 @@ public class GameScreen extends JComponent {
 		
 		wave=new Wave(this);
 		this.wave.waveNumber=0;
+		
+		addKeyListener(new KeyListener() {
+			
+			@Override
+			public void keyTyped(KeyEvent e) {
+				// TODO Auto-generated method stub
+				
+			}
+			
+			@Override
+			public void keyReleased(KeyEvent e) {
+				// TODO Auto-generated method stub
+				
+			}
+			
+			@Override
+			public void keyPressed(KeyEvent e) {
+				// TODO Auto-generated method stub
+				if(e.getKeyCode()==KeyEvent.VK_ENTER)wave.nextWave();
+			}
+		});
 	}
 
 	@Override
@@ -243,5 +266,10 @@ public class GameScreen extends JComponent {
 		}
 	}
 	
+	public void update() {
+		if(wave.waveSpawning){
+			wave.spawnEnemies();
+		}
+	}
 	
 }

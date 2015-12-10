@@ -33,7 +33,7 @@ public class Main {
 				System.out.println("Thread is intterupt");
 			}
 			gameScreen.repaint();
-			spawn.repaint();
+			//spawn.repaint();
 		}
 	}
 
