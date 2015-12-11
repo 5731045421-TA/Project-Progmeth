@@ -31,11 +31,11 @@ public class Field {
 		{0,0,0,0,0,0,1,0,0,0,0,0},
 		{0,0,0,0,0,0,1,0,0,0,0,0},
 		{0,0,0,0,0,0,1,0,0,0,0,0},
-		{0,0,0,0,0,0,1,0,0,0,0,0},
+		{0,0,0,0,0,0,2,0,0,0,0,0},
 	};
 	 
 	private int stage;
-	public final static int GRASS= 0,WALKWAY=1,ROCK=2,OUTSIDE=3;
+	public final static int GRASS= 0,WALKWAY=1,BASE=2,OUTSIDE=3;
 	
 	
 
@@ -74,6 +74,7 @@ public class Field {
 				try {
 					if(Field.getTerrainAt(x,y) == 0)g2d.drawImage(RenderManager.grass, null, x*50, y*50);
 					if(Field.getTerrainAt(x,y) == 1)g2d.drawImage(RenderManager.road, null, x*50, y*50);
+					if(Field.getTerrainAt(x,y) == 2)g2d.drawImage(RenderManager.heart, null, x*50, y*50);
 				} catch (Exception e) {
 					// TODO Auto-generated catch block
 					//e.printStackTrace();

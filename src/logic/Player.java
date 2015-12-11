@@ -2,12 +2,12 @@ package logic;
 
 public class Player {
 	public static int money;
-	private static String name;
 	public static int life;
-	public Player(String name) {
-		Player.money = 500;
-		Player.name = name;
-		Player.life = 30;
+	public final static Player player = new Player();
+	
+	public Player() {
+		this.money = 500;
+		this.life = 30;
 	}
 	public int getMoney() {
 		return money;
@@ -23,8 +23,6 @@ public class Player {
 		if(life<0)life=0;
 		Player.life = life;
 	}
-	public String getName() {
-		return name;
-	}
+	
 	
 }

@@ -1,92 +1,46 @@
 package logic;
 
-import java.awt.Graphics2D;
-import java.awt.image.BufferedImage;
-import java.io.IOException;
+import java.awt.*;
+import java.util.ArrayList;
 
-import javax.imageio.ImageIO;
-
-import Interface.Buyable;
-import Interface.IRenderable;
-import Interface.Shootable;
-import Interface.Upgrateable;
-import gameMain.Main;
+import render.GameScreen;
 import render.RenderManager;
 
+public class Tower {
+	
+	public int id;
+	public int x,y;
+	public int range;
+	public int damage;
+	
+	public static ArrayList<Tower> towers = new ArrayList<Tower>();
 
-public class Tower implements Buyable,Shootable,Upgrateable,IRenderable{
-	protected int attack;
-	protected int radius;
-	protected int price;
-	protected int[] upgradePrice;
-	protected int state;
-	public BufferedImage towerImage;
-	public Tower() {
-		this.attack = 5;
-		this.radius = 2;
-		this.price = 200;
-		this.state = 0;
-		upgradePrice  = new int[]{200,500,700};
-	}
-
-	@Override
-	public void shoot(Enemy a) {
-		a.damage(attack);
-		
-	}
-
-	@Override
-	public void upgrate() {
-		Player.money = Player.money - upgradePrice[state];
-		
+	public Tower(int id,int x,int y, int range, int damage) {
+		this.id = id;
+		this.x = x;
+		this.y = y;
+		this.range = range;
+		this.damage = damage;
 	}
 	
-	@Override
-	public boolean canUpgrade() {
-		if(upgradePrice[state] <= Player.money) return true;
-		return false;
+	public static void addTower(Tower i){
+		towers.add(i);
 	}
-
-	@Override
-	public void buy() {
-		Player.money = Player.money - price;
-		
-	}
-
-	@Override
-	public boolean canBuy() {
-		if(Player.money >= price) return true;
-		return false;
-	}
-
-	@Override
-	public void draw(Graphics2D g2d) {
-		// TODO Auto-generated method stub
-		try{
-			ClassLoader load = RenderManager.class.getClassLoader();
-			towerImage = ImageIO.read(load.getResource("fileName"));
-		}
-		catch(IOException e){
-			towerImage = null;
+	
+	public static void draw(Graphics g){
+		Graphics2D g2 = (Graphics2D)g;
+		for(Tower i : towers){
+//			g2.setComposite(GameScreen.transcluentWhite);
+//			g2.setColor(Color.LIGHT_GRAY);
 			
+			g2.drawOval(i.x*50 - i.range+25, i.y*50 - i.range+25, i.range*2, i.range*2);
+//			g2.setComposite(GameScreen.opaque);
+			g2.drawImage(RenderManager.turret[i.id], null, i.x*50, i.y*50);
 		}
 	}
+	
+	
 
-	@Override
-	public int getZ() {
-		// TODO Auto-generated method stub
-		return Integer.MAX_VALUE;
-	}
-	@Override
-	public boolean isDestroyed() {
-		// TODO Auto-generated method stub
-		return false;
-	}
-	@Override
-	public boolean isVisible() {
-		// TODO Auto-generated method stub
-		return true;
-	}
 	
 
 

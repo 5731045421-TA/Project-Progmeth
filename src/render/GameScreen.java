@@ -18,6 +18,7 @@ import javax.swing.JComponent;
 import input.InputUtility;
 import logic.Field;
 import logic.Player;
+import logic.Tower;
 
 public class GameScreen extends JComponent {
 
@@ -25,9 +26,11 @@ public class GameScreen extends JComponent {
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
-	private int a, b = 0;
-	protected static final AlphaComposite transcluentWhite = AlphaComposite.getInstance(AlphaComposite.SRC_OVER, 0.7f);
-	protected static final AlphaComposite opaque = AlphaComposite.getInstance(AlphaComposite.SRC_OVER, 1);
+	private int[] range = {50,80,100,120,200,150,120};
+	private int[] damage = {2,5,8,12,5,20,30};
+	private int[] cost = {100,150,200,250,300,400,500};
+	public static final AlphaComposite transcluentWhite = AlphaComposite.getInstance(AlphaComposite.SRC_OVER, 0.7f);
+	public static final AlphaComposite opaque = AlphaComposite.getInstance(AlphaComposite.SRC_OVER, 1);
 	private Point imgPoint[] = new Point[7];
 
 	public static AffineTransformOp aop;
@@ -62,23 +65,26 @@ public class GameScreen extends JComponent {
 
 			@Override
 			public void mouseReleased(MouseEvent e) {
-		
+
 			}
 
 			@Override
 			public void mousePressed(MouseEvent e) {
-				if (e.getButton() == MouseEvent.BUTTON1 ) {
+				if (e.getButton() == MouseEvent.BUTTON1) {
+					if (InputUtility.isMouseLeftDown()) {
+						InputUtility.setAlreadyClick(true);
+					}
 					InputUtility.setMouseLeftDown(true);
 					InputUtility.setMouseLeftTriggered(true);
-			} else if (e.getButton() == MouseEvent.BUTTON3) {
-				InputUtility.setMouseRightDown(true);
-				InputUtility.setMouseRightTriggered(true);
-				for (int i = 0; i < 7; i++) {
-					if (InputUtility.getClickOnTurret(i)) {
-						InputUtility.setClickOnTurret(false, i);
+				} else if (e.getButton() == MouseEvent.BUTTON3) {
+					InputUtility.setMouseRightDown(true);
+					InputUtility.setMouseRightTriggered(true);
+					for (int i = 0; i < 7; i++) {
+						if (InputUtility.getClickOnTurret(i)) {
+							InputUtility.setClickOnTurret(false, i);
+						}
 					}
 				}
-			}
 			}
 
 			@Override
@@ -117,22 +123,11 @@ public class GameScreen extends JComponent {
 		super.paintComponent(g);
 
 		Field.drawMap(g, Field.map);
-		int i=0;
-		if(i>=6)i=0;
-		if (!Field.outOfField(a/50, 300/50)) 
-			g2d.drawImage(RenderManager.animationCreep1[0][i], aop, a++, 300);
-		if (!Field.outOfField((a-50)/50, 300/50))
-			g2d.drawImage(RenderManager.animationCreep2[1][i], aop, (a++)-50, 300);
-		if(!Field.outOfField((a-150)/50, 300/50))
-			g2d.drawImage(RenderManager.animationCreep1[2][i], null, (a++)-150, 300);
-		if(!Field.outOfField((a-200)/50, 300/50))
-			g2d.drawImage(RenderManager.animationCreep1[3][i], null, (a++)-200, 300);
-		//if()
-		
 		drawStatusBar(g);
 		drawClickImage(g);
-		//addTurret(g);
-		
+		addTurret(g);
+		Tower.draw(g);
+
 	}
 
 	public void drawStatusBar(Graphics g) {
@@ -142,9 +137,9 @@ public class GameScreen extends JComponent {
 
 		g2d.setFont(new Font("Tahoma", Font.BOLD, 20));
 		g2d.setColor(Color.WHITE);
-		g2d.drawString("Live :" + Player.life, 35, 625);
+		g2d.drawString("Live :" + Player.player.life, 35, 625);
 		g2d.drawImage(RenderManager.heart, null, 10, 605);
-		g2d.drawString("Money :" + Player.money, 35, 655);
+		g2d.drawString("Money :" + Player.player.money, 35, 655);
 		g2d.drawImage(RenderManager.coin, null, 10, 635);
 		g2d.drawString("Wave :  0/7", 35, 685);
 		g2d.drawImage(RenderManager.devil, null, 10, 665);
@@ -186,7 +181,7 @@ public class GameScreen extends JComponent {
 	private void drawClickImage(Graphics g) {
 		Graphics2D g2d = (Graphics2D) g;
 		for (int i = 0; i < 7; i++) {
-			if (InputUtility.getClickOnTurret(i)) {
+			if (Player.player.money > cost[i] && InputUtility.getClickOnTurret(i)) {
 				drawAura(g);
 				g2d.drawImage(RenderManager.turret[i], null,
 						InputUtility.getMouseX() - RenderManager.turret[i].getWidth() / 2,
@@ -195,17 +190,22 @@ public class GameScreen extends JComponent {
 		}
 	}
 
+	int is = 0;
+
 	private void addTurret(Graphics g) {
-		final int x = InputUtility.getMouseX() / 50;
-		final int y = InputUtility.getMouseY() / 50;
+		int x = InputUtility.getMouseX() / 50;
+		int y = InputUtility.getMouseY() / 50;
 		Graphics2D g2d = (Graphics2D) g;
 		for (int i = 0; i < 7; i++) {
-			if (InputUtility.isMouseLeftDown() && InputUtility.getClickOnTurret(i)) {
-				g2d.drawImage(RenderManager.turret[i], null, x * 50, y * 50);
+			if (Player.player.money > cost[i] && InputUtility.isMouseLeftDown() && InputUtility.getClickOnTurret(i) && InputUtility.isAlreadyClick() && !Field.outOfField(x, y)) {
 				InputUtility.setClickOnTurret(false, i);
+				InputUtility.setAlreadyClick(false);
+				InputUtility.setMouseLeftDown(false);
 				System.out.println("turrret summon" + i);
-				// ‡À≈◊Õaddentities‡æ◊ËÕ‡°Á∫§Ë“‰«È
-				// °–«“¥drawEntites
+				Tower.addTower(new Tower(i, x, y, range[i], damage[i]));
+				Player.player.money -= cost[i];
+				System.out.println(Tower.towers.get(is++).x);
+
 			}
 		}
 	}

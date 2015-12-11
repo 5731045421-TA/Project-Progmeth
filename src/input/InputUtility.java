@@ -4,6 +4,7 @@ public class InputUtility {
 	private static int mouseX,mouseY;
 	private static boolean[] clickOnTurret = new boolean[7];
 	private static boolean mouseLeftDown,mouseRightDown;
+	private static boolean alreadyClick;
 	private static boolean mouseLeftTriggered,mouseRightTriggered;
 	private static boolean[] keyPressed = new boolean[256];
 	private static boolean[] keyTriggered = new boolean[256];
@@ -49,6 +50,12 @@ public class InputUtility {
 	}
 	public static void setMouseRightTriggered(boolean mouseRightTriggered) {
 		InputUtility.mouseRightTriggered = mouseRightTriggered;
+	}
+	public static boolean isAlreadyClick() {
+		return alreadyClick;
+	}
+	public static void setAlreadyClick(boolean alreadyClick) {
+		InputUtility.alreadyClick = alreadyClick;
 	}
 	
 	
