@@ -8,23 +8,37 @@ import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.awt.Point;
 import java.awt.Rectangle;
+import java.awt.event.KeyEvent;
+import java.awt.event.KeyListener;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.awt.event.MouseMotionListener;
 import java.awt.geom.AffineTransform;
 import java.awt.image.AffineTransformOp;
+
+import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JComponent;
+
+import com.sun.prism.Image;
+
 import input.InputUtility;
+import logic.Enemy;
+import logic.EnemyMove;
 import logic.Field;
 import logic.Player;
+
 import logic.Tower;
+
+import logic.Wave;
+
 
 public class GameScreen extends JComponent {
 
 	/**
 	 * 
 	 */
+	int a,b = 0;
 	private static final long serialVersionUID = 1L;
 	private int[] range = {50,80,100,120,200,150,120};
 	private int[] damage = {2,5,8,12,5,20,30};
@@ -32,9 +46,16 @@ public class GameScreen extends JComponent {
 	public static final AlphaComposite transcluentWhite = AlphaComposite.getInstance(AlphaComposite.SRC_OVER, 0.7f);
 	public static final AlphaComposite opaque = AlphaComposite.getInstance(AlphaComposite.SRC_OVER, 1);
 	private Point imgPoint[] = new Point[7];
-
+	
+	public EnemyMove[] enemyMap =new EnemyMove[200];
+	private int enemies=0;
+	
+	Wave wave;
+	
 	public static AffineTransformOp aop;
-
+	
+	
+	
 	static {
 		AffineTransform at = new AffineTransform();
 		at.rotate(Math.toRadians(90));
@@ -114,6 +135,30 @@ public class GameScreen extends JComponent {
 				}
 			}
 		});
+		
+		wave=new Wave(this);
+		this.wave.waveNumber=0;
+		
+		addKeyListener(new KeyListener() {
+			
+			@Override
+			public void keyTyped(KeyEvent e) {
+				// TODO Auto-generated method stub
+				
+			}
+			
+			@Override
+			public void keyReleased(KeyEvent e) {
+				// TODO Auto-generated method stub
+				
+			}
+			
+			@Override
+			public void keyPressed(KeyEvent e) {
+				// TODO Auto-generated method stub
+				if(e.getKeyCode()==KeyEvent.VK_ENTER)wave.nextWave();
+			}
+		});
 	}
 
 	@Override
@@ -123,10 +168,35 @@ public class GameScreen extends JComponent {
 		super.paintComponent(g);
 
 		Field.drawMap(g, Field.map);
+
+		int i=0;
+		if(i>=6)i=0;
+		if (!Field.outOfField(a/50, 300/50)) 
+			g2d.drawImage(RenderManager.animationCreep1[0][i], aop, a++, 300);
+		if (!Field.outOfField((a++-50)/50, 300/50))
+			g2d.drawImage(RenderManager.animationCreep2[1][i], aop, (a++)-50, 300);
+		if(!Field.outOfField((a++-150)/50, 300/50))
+			g2d.drawImage(RenderManager.animationCreep1[2][i], null, (a++)-150, 300);
+		if(!Field.outOfField((a++-200)/50, 300/50))
+			g2d.drawImage(RenderManager.animationCreep1[3][i], null, (a++)-200, 300);
+		
+		
+
 		drawStatusBar(g);
 		drawClickImage(g);
+
 		addTurret(g);
 		Tower.draw(g);
+
+
+		
+		
+		//Enemies
+		for(int j=0;j<enemyMap.length;j++){
+			if(enemyMap[j]!=null){
+				g.drawImage(enemyMap[j].enemy.texture, enemyMap[j].xPos+50, enemyMap[j].yPos+50, 50,50,null);
+			}
+		}
 
 	}
 
@@ -201,12 +271,28 @@ public class GameScreen extends JComponent {
 				InputUtility.setClickOnTurret(false, i);
 				InputUtility.setAlreadyClick(false);
 				InputUtility.setMouseLeftDown(false);
-				System.out.println("turrret summon" + i);
+//				System.out.println("turrret summon" + i);
 				Tower.addTower(new Tower(i, x, y, range[i], damage[i]));
 				Player.player.money -= cost[i];
-				System.out.println(Tower.towers.get(is++).x);
+//				System.out.println(Tower.towers.get(is++).x);
 
 			}
 		}
 	}
+	
+	public void spawnEnemy(){
+		for(int i=0;i<enemyMap.length;i++){
+			if(enemyMap[i]==null){
+				enemyMap[i]=new EnemyMove(Enemy.enemyList[0], level.spawnPoint);
+				break;
+			}
+		}
+	}
+	
+	public void update() {
+		if(wave.waveSpawning){
+			wave.spawnEnemies();
+		}
+	}
+	
 }

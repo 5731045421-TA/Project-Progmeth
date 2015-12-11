@@ -20,7 +20,7 @@ public class Main {
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		
 		gameScreen = new GameScreen();
-		spawn=new Spawn(1);
+		//spawn=new Spawn(1);
 		
 		frame.getContentPane().add(gameScreen);
 		frame.setVisible(true);
@@ -33,7 +33,7 @@ public class Main {
 				System.out.println("Thread is intterupt");
 			}
 			gameScreen.repaint();
-			spawn.repaint();
+			//spawn.repaint();
 		}
 	}
 

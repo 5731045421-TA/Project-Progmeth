@@ -1,44 +1,77 @@
 package logic;
 
+import javax.swing.ImageIcon;
+
 import Interface.Damageable;
 
 public class Enemy implements Damageable{
-	private int hp;
-	private int creepNumber;
-	private int type;
+	public static final Enemy[] enemyList=new Enemy[100];
+	public static final Enemy slime=new EnemySlime(0,5,3,10,3,4).getTextureFile("creep1.png");
 	
+	public int id;
+	public int price;
+	public double speed;
+	public double attackSpeed;
+	public int damage;
+	public int health;
 	
-	public Enemy(int creepNumber,int type) {
-		this.setHp(10);
-		this.creepNumber=creepNumber;
-		this.type=type;
+	public String textureFile="";
+	public java.awt.Image texture=null;
+	
+
+	
+	public Enemy(int id,int price,int damage,int health,double speed,double attackSpeed) {
+		if(enemyList[id]!=null){
+			System.out.println("[TowerInitialization] Two enemies with same id");
+		}else{
+			enemyList[id]=this;
+			
+			this.id=id;
+			this.price=price;
+			this.damage=damage;
+			setHealth(health);
+			this.speed=speed;
+			this.attackSpeed=attackSpeed;
+		}
+		
+		
 	}
 
+	
 
 	@Override
 	public void damage(int attack) {
-		setHp(getHp() - attack); 
+		setHealth(getHealth() - attack); 
 	}
 
 
-	public int getHp() {
-		return hp;
+	public int getHealth() {
+		return health;
 	}
 
 
-	public void setHp(int hp) {
+	public void setHealth(int hp) {
 		if(hp<0)hp=0;
-		this.hp = hp;
+		this.health = hp;
 	}
 
 
 	@Override
 	public boolean isDead() {
-		if(this.hp <= 0)return true;
+		if(this.health <= 0)return true;
 		return false;
 	}
-
-
+	
+	public static startup() {
+		
+	}
+	
+	public Enemy getTextureFile(String str) {
+		this.textureFile=str;
+		this.texture=new ImageIcon("res/enemy"+this.textureFile).getImage();
+		
+		return this;
+	}
 	
 
 }
