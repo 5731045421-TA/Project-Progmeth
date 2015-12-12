@@ -194,6 +194,9 @@ public class GameScreen extends JComponent {
 		for(int i = 0;i<mobs.length;i++){
 			if(mobs[i].inGame){
 				mobs[i].physic();
+				//System.out.println(mobs[i].inGame);
+				//System.out.println(mobs[0].xC);
+				
 			}
 		}
 		
@@ -211,7 +214,7 @@ public class GameScreen extends JComponent {
 			for(int i =0;i<mobs.length;i++){
 				if(!mobs[i].inGame&&!mobs[i].isDead){
 					mobs[i].spawnMob(0);
-					System.out.println("here");
+					//System.out.println("here");
 					break;
 				}
 				//System.out.println("hhere");

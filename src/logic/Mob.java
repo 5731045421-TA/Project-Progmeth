@@ -6,7 +6,7 @@ import render.RenderManager;
 
 public class Mob extends Rectangle{
 	
-	public int xC=0,yC=6;
+	public int xC,yC;
 	public int mobSize = 7;
 	public int mobWalk = 0;
 	public int up = 0,down = 1,right = 2,left = 3;
@@ -24,15 +24,17 @@ public class Mob extends Rectangle{
 	}
 	int i = 0;
 	public void spawnMob(int mobID){
-		System.out.println("spawnMob");
+		//System.out.println("spawnMob");
 		for(int y = 0;y<12;y++){
-			if(Field.map[y][0] == 1){
+			if(Field.map[0][y] == 1){
 				setBounds(0, 50*y, mobSize, mobSize);
 				xC = 0;
 				yC = y;
+				//System.out.println("h");
 			}
 		}
-		System.out.println(i++ + " "+inGame);
+		//System.out.println(this.x+" "+this.y);
+		//System.out.println(i++ + " "+inGame);
 		this.mobID = mobID;
 		inGame = true;
 		isDead = false;
@@ -69,34 +71,34 @@ public class Mob extends Rectangle{
 				}
 				if(!isUpward){
 					try {
-						if(Field.map[yC+1][xC] == 1){
+						if(Field.map[xC][yC+1] == 1){
 							direction = down;
 						}
 					} catch (Exception e) {}
 				}
 				if(!isDownward){
 					try {
-						if(Field.map[yC-1][xC] == 1){
+						if(Field.map[xC][yC-1] == 1){
 							direction = up;
 						}
 					} catch (Exception e) {}
 				}
 				if(!isLeftward){
 					try {
-						if(Field.map[yC][xC+1] ==1){
+						if(Field.map[xC+1][yC] ==1){
 							direction = right;
 						}
 					} catch (Exception e) {}
 				}
 				if(!isRightward){
 					try {
-						if(Field.map[yC][xC-1] == 1){
+						if(Field.map[xC-1][yC] == 1){
 							direction = left;
 						}
 					} catch (Exception e) {}
 				}
 				
-				if(Field.map[yC][xC] == 1){
+				if(Field.map[yC][xC] == 2){
 					deleteMob();
 					looseHealth();
 				}
