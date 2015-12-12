@@ -1,0 +1,156 @@
+package logic;
+import java.awt.*;
+import java.awt.image.BufferedImage;
+
+import render.RenderManager;
+
+public class Mob extends Rectangle{
+	
+	public int xC=0,yC=6;
+	public int mobSize = 7;
+	public int mobWalk = 0;
+	public int up = 0,down = 1,right = 2,left = 3;
+	public int direction = right;
+	public int mobID = -1;
+	public boolean inGame = true;
+	public boolean isDead = false;
+	public boolean isUpward = false;
+	public boolean isDownward = false;
+	public boolean isRightward = false;
+	public boolean isLeftward = false;
+	
+	public Mob(){
+		
+	}
+	int i = 0;
+	public void spawnMob(int mobID){
+		for(int y = 0;y<12;y++){
+			if(Field.map[y][0] == 1){
+				setBounds(0, 50*yC, mobSize, mobSize);
+				xC = 0;
+				yC = y;
+			}
+		}
+		System.out.println(i++ + " "+inGame);
+		this.mobID = mobID;
+		inGame = true;
+		isDead = false;
+	}
+	
+	public int walkFrame = 0,walkSpeed = 2;
+	public void physic(){
+		if(walkFrame>=walkSpeed){
+			if(direction == right){
+				x++;
+			}else if(direction == up){
+				y--;
+			}else if(direction == down){
+				y++;
+			}else if(direction == left){
+				x--;
+			}
+			
+			mobWalk++;
+			
+			if(mobWalk == 50){
+				if(direction == right){
+					xC++;
+					isRightward = true;
+				}else if(direction == up){
+					yC--;
+					isUpward = true;
+				}else if(direction == down){
+					yC++;
+					isDownward = true;
+				}else if (direction == left){
+					xC--;
+					isLeftward = true;
+				}
+				if(!isUpward){
+					try {
+						if(Field.map[yC+1][xC] == 1){
+							direction = down;
+						}
+					} catch (Exception e) {}
+				}
+				if(!isDownward){
+					try {
+						if(Field.map[yC-1][xC] == 1){
+							direction = up;
+						}
+					} catch (Exception e) {}
+				}
+				if(!isLeftward){
+					try {
+						if(Field.map[yC][xC+1] ==1){
+							direction = right;
+						}
+					} catch (Exception e) {}
+				}
+				if(!isRightward){
+					try {
+						if(Field.map[yC][xC-1] == 1){
+							direction = left;
+						}
+					} catch (Exception e) {}
+				}
+				
+				if(Field.map[yC][xC] == 1){
+					deleteMob();
+					looseHealth();
+				}
+				
+				isUpward = false;
+				isDownward = false;
+				isLeftward = false;
+				isRightward = false;
+				mobWalk = 0;
+			}
+			
+			walkFrame = 0;
+		}else{
+			walkFrame++;
+		}
+	}
+	
+	public void deleteMob() {
+		inGame = false;
+		isDead = true;
+	}
+	
+	public void looseHealth(){
+		Player.decreaseLife();;
+	}
+	
+	public BufferedImage[] selectEnemyPic(int id){
+		switch (id) {
+		case 0:
+			return RenderManager.animationCreep1[0];
+		case 1:
+			return RenderManager.animationCreep1[1];
+		case 2:
+			return RenderManager.animationCreep1[2];
+		case 3:
+			return RenderManager.animationCreep2[0];
+		case 4:	
+			return RenderManager.animationCreep2[1];
+		case 5:
+			return RenderManager.animationCreep2[2];
+		case 6:
+			return RenderManager.animationCreep3[0];
+		case 7:	
+			return RenderManager.animationCreep3[1];
+		default:
+			return RenderManager.animationCreep3[2];
+		}
+	}
+	
+	public void draw(Graphics g,int id){
+		Graphics2D g2d = (Graphics2D)g;
+		if(inGame){
+			g2d.drawImage(selectEnemyPic(id)[i], null, x	,y);
+			i++;
+			if(i==4)i=0;
+		}
+	}
+}

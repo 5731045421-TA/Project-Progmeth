@@ -9,20 +9,22 @@ public class Player {
 		this.money = 500;
 		this.life = 30;
 	}
-	public int getMoney() {
+	public static int getMoney() {
 		return money;
 	}
-	public void setMoney(int money) {
+	public static void setMoney(int money) {
 		if(money<0)money=0;
 		Player.money = money;
 	}
-	public int getLife() {
+	public static int getLife() {
 		return life;
 	}
-	public void setLife(int life) {
+	public static void setLife(int life) {
 		if(life<0)life=0;
 		Player.life = life;
 	}
-	
+	public static void decreaseLife(){
+		setLife(life-1);
+	}
 	
 }

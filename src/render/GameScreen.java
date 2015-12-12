@@ -24,13 +24,12 @@ import com.sun.prism.Image;
 
 import input.InputUtility;
 import logic.Enemy;
-import logic.EnemyMove;
 import logic.Field;
+import logic.Mob;
 import logic.Player;
 
 import logic.Tower;
 
-import logic.Wave;
 
 
 public class GameScreen extends JComponent {
@@ -47,14 +46,14 @@ public class GameScreen extends JComponent {
 	public static final AlphaComposite opaque = AlphaComposite.getInstance(AlphaComposite.SRC_OVER, 1);
 	private Point imgPoint[] = new Point[7];
 	
-	public EnemyMove[] enemyMap =new EnemyMove[200];
+	public static int spawnTime=100,spawnFrame=2400;
+	
 	private int enemies=0;
 	
-	Wave wave;
 	
 	public static AffineTransformOp aop;
 	
-	
+	public static Mob[] mobs=new Mob[7];
 	
 	static {
 		AffineTransform at = new AffineTransform();
@@ -136,10 +135,9 @@ public class GameScreen extends JComponent {
 			}
 		});
 		
-		wave=new Wave(this);
-		this.wave.waveNumber=0;
 		
 		addKeyListener(new KeyListener() {
+
 			
 			@Override
 			public void keyTyped(KeyEvent e) {
@@ -156,11 +154,15 @@ public class GameScreen extends JComponent {
 			@Override
 			public void keyPressed(KeyEvent e) {
 				// TODO Auto-generated method stub
-				if(e.getKeyCode()==KeyEvent.VK_ENTER)wave.nextWave();
+				//if(e.getKeyCode()==KeyEvent.VK_ENTER)wave.nextWave();
 			}
 		});
+	
+		for(int i=0;i<mobs.length;i++){
+			mobs[i]=new Mob();
+		}
 	}
-
+	int i=0;
 	@Override
 	protected void paintComponent(Graphics g) {
 		// TODO Auto-generated method stub
@@ -169,37 +171,48 @@ public class GameScreen extends JComponent {
 
 		Field.drawMap(g, Field.map);
 
-		int i=0;
-		if(i>=6)i=0;
-		if (!Field.outOfField(a/50, 300/50)) 
-			g2d.drawImage(RenderManager.animationCreep1[0][i], aop, a++, 300);
-		if (!Field.outOfField((a++-50)/50, 300/50))
-			g2d.drawImage(RenderManager.animationCreep2[1][i], aop, (a++)-50, 300);
-		if(!Field.outOfField((a++-150)/50, 300/50))
-			g2d.drawImage(RenderManager.animationCreep1[2][i], null, (a++)-150, 300);
-		if(!Field.outOfField((a++-200)/50, 300/50))
-			g2d.drawImage(RenderManager.animationCreep1[3][i], null, (a++)-200, 300);
 		
 		
-
 		drawStatusBar(g);
 		drawClickImage(g);
 
 		addTurret(g);
 		Tower.draw(g);
-
+		
 
 		
 		
-		//Enemies
-		for(int j=0;j<enemyMap.length;j++){
-			if(enemyMap[j]!=null){
-				g.drawImage(enemyMap[j].enemy.texture, enemyMap[j].xPos+50, enemyMap[j].yPos+50, 50,50,null);
+		
+//		System.out.println(i);
+//		if(i<84)
+//			Enemy.enemyList[i].spawnEnemy(i);
+//		Enemy.draw(g2d,i);
+//		i++;
+//		if(i==84)i=0;
+		
+		for(int i=0;i<mobs.length;i++){
+			if(mobs[i].inGame){
+				mobs[i].draw(g, 0);
+				
 			}
 		}
-
+		
 	}
-
+	
+	public void mobSpawner(){
+		if(spawnFrame >= spawnTime){
+			for(int i =0;i<mobs.length;i++){
+				if(!mobs[i].inGame&&!mobs[i].isDead){
+					mobs[i].spawnMob(0);
+					break;
+				}
+			}
+			spawnFrame = 0;
+		}else{
+			spawnFrame++;
+		}
+	}
+	
 	public void drawStatusBar(Graphics g) {
 		Graphics2D g2d = (Graphics2D) g;
 		g2d.fillRect(0, 600, 1200, 100);
@@ -265,7 +278,7 @@ public class GameScreen extends JComponent {
 	private void addTurret(Graphics g) {
 		int x = InputUtility.getMouseX() / 50;
 		int y = InputUtility.getMouseY() / 50;
-		Graphics2D g2d = (Graphics2D) g;
+		//Graphics2D g2d = (Graphics2D) g;
 		for (int i = 0; i < 7; i++) {
 			if (Player.player.money > cost[i] && InputUtility.isMouseLeftDown() && InputUtility.getClickOnTurret(i) && InputUtility.isAlreadyClick() && !Field.outOfField(x, y)) {
 				InputUtility.setClickOnTurret(false, i);
@@ -280,19 +293,8 @@ public class GameScreen extends JComponent {
 		}
 	}
 	
-	public void spawnEnemy(){
-		for(int i=0;i<enemyMap.length;i++){
-			if(enemyMap[i]==null){
-				enemyMap[i]=new EnemyMove(Enemy.enemyList[0], level.spawnPoint);
-				break;
-			}
-		}
-	}
 	
-	public void update() {
-		if(wave.waveSpawning){
-			wave.spawnEnemies();
-		}
-	}
+	
+	
 	
 }

@@ -7,6 +7,7 @@ import render.GameScreen;
 import render.RenderManager;
 
 public class Field {
+	
 	public static int[][] map =  {
 		{0,0,0,0,0,0,1,0,0,0,0,0},
 		{0,0,0,0,0,0,1,0,0,0,0,0},
@@ -37,7 +38,11 @@ public class Field {
 	private int stage;
 	public final static int GRASS= 0,WALKWAY=1,BASE=2,OUTSIDE=3;
 	
-	
+	public Field(int stage) {
+		// TODO Auto-generated constructor stub
+		this.stage=stage;
+		
+	}
 
 	public int[][] getMap() {
 		return map;

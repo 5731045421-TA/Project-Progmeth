@@ -59,13 +59,16 @@ public class RenderManager {
 			animationCreep2=new BufferedImage[4][6];
 			animationCreep3=new BufferedImage[4][6];
 			
-			/*for(int i=0;i<4;i++){
+			for(int i=0;i<4;i++){
 				for (int j = 0; j < 6; j++) {
 					animationCreep1[i][j]=creep1.getSubimage(j*50, i*50, 50, 50);
-					animationCreep2[i][j]=creep2.getSubimage(j*50, i*50, 50, 50);
-					animationCreep3[i][j]=creep3.getSubimage(j*50, i*50, 50, 50);
+					if(j<4){
+						animationCreep2[i][j]=creep2.getSubimage(j*50, i*50, 50, 50);
+						animationCreep3[i][j]=creep3.getSubimage(j*50, i*50, 50, 50);
+					
+					}
 				}
-			}*/
+			}
 		} catch (IOException e) {
 			e.printStackTrace();
 			System.out.println("can't load image");
