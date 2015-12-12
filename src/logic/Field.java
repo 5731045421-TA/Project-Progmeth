@@ -78,7 +78,7 @@ public class Field {
 				//System.out.println("before");
 				try {
 					if(Field.getTerrainAt(x,y) == 0)g2d.drawImage(RenderManager.grass, null, x*50, y*50);
-					if(Field.getTerrainAt(x,y) == 1)g2d.drawImage(RenderManager.road, null, x*50, y*50);
+					if(Field.getTerrainAt(x,y) == 1)g2d.drawImage(RenderManager.road,  null, x*50, y*50);
 					if(Field.getTerrainAt(x,y) == 2)g2d.drawImage(RenderManager.heart, null, x*50, y*50);
 				} catch (Exception e) {
 					// TODO Auto-generated catch block

@@ -1,7 +1,7 @@
 package Interface;
 
-import logic.Enemy;
+import logic.Mob;
 
 public interface Shootable {
-	public void shoot(Enemy a);
+	public void shoot(Mob a);
 }

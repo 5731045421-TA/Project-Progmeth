@@ -3,7 +3,6 @@ package logic;
 import java.awt.*;
 import java.util.ArrayList;
 
-import render.GameScreen;
 import render.RenderManager;
 
 public class Tower {

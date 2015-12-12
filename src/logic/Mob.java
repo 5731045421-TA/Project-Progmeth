@@ -40,7 +40,7 @@ public class Mob extends Rectangle{
 		isDead = false;
 	}
 	
-	public int walkFrame = 0,walkSpeed = 2;
+	public int walkFrame = 0,walkSpeed = -1;
 	public void physic(){
 		if(walkFrame>=walkSpeed){
 			if(direction == right){
@@ -98,7 +98,7 @@ public class Mob extends Rectangle{
 					} catch (Exception e) {}
 				}
 				
-				if(Field.map[yC][xC] == 2){
+				if(Field.map[xC][yC] == 2){
 					deleteMob();
 					looseHealth();
 				}

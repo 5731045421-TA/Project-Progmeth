@@ -16,11 +16,8 @@ import java.awt.event.MouseMotionListener;
 import java.awt.geom.AffineTransform;
 import java.awt.image.AffineTransformOp;
 
-import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JComponent;
-
-import com.sun.prism.Image;
 
 import input.InputUtility;
 import logic.Field;
@@ -47,7 +44,6 @@ public class GameScreen extends JComponent {
 	
 	public static int spawnTime=100,spawnFrame=2400;
 	
-	private int enemies=0;
 	
 	
 	public static AffineTransformOp aop;
@@ -191,7 +187,7 @@ public class GameScreen extends JComponent {
 //		if(i==84)i=0;
 		mobSpawner();
 		//System.out.println("123");
-		for(int i = 0;i<mobs.length;i++){
+		for(int i = 0;i<mobs.length;i++){//calculate position
 			if(mobs[i].inGame){
 				mobs[i].physic();
 				//System.out.println(mobs[i].inGame);
