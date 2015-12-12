@@ -190,6 +190,7 @@ public class GameScreen extends JComponent {
 //		i++;
 //		if(i==84)i=0;
 		mobSpawner();
+		//System.out.println("123");
 		for(int i = 0;i<mobs.length;i++){
 			if(mobs[i].inGame){
 				mobs[i].physic();
@@ -210,8 +211,10 @@ public class GameScreen extends JComponent {
 			for(int i =0;i<mobs.length;i++){
 				if(!mobs[i].inGame&&!mobs[i].isDead){
 					mobs[i].spawnMob(0);
+					System.out.println("here");
 					break;
 				}
+				//System.out.println("hhere");
 			}
 			spawnFrame = 0;
 		}else{

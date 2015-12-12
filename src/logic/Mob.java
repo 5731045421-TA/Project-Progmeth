@@ -12,7 +12,7 @@ public class Mob extends Rectangle{
 	public int up = 0,down = 1,right = 2,left = 3;
 	public int direction = right;
 	public int mobID = -1;
-	public boolean inGame = true;
+	public boolean inGame = false;
 	public boolean isDead = false;
 	public boolean isUpward = false;
 	public boolean isDownward = false;
@@ -24,9 +24,10 @@ public class Mob extends Rectangle{
 	}
 	int i = 0;
 	public void spawnMob(int mobID){
+		System.out.println("spawnMob");
 		for(int y = 0;y<12;y++){
 			if(Field.map[y][0] == 1){
-				setBounds(0, 50*yC, mobSize, mobSize);
+				setBounds(0, 50*y, mobSize, mobSize);
 				xC = 0;
 				yC = y;
 			}
