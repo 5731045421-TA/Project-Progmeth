@@ -3,7 +3,6 @@ package gameMain;
 import javax.swing.JComponent;
 import javax.swing.JFrame;
 
-import logic.Enemy;
 import logic.Tower;
 import render.GameScreen;
 import render.Spawn;

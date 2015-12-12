@@ -23,7 +23,6 @@ import javax.swing.JComponent;
 import com.sun.prism.Image;
 
 import input.InputUtility;
-import logic.Enemy;
 import logic.Field;
 import logic.Mob;
 import logic.Player;
@@ -179,6 +178,7 @@ public class GameScreen extends JComponent {
 		addTurret(g);
 		Tower.draw(g);
 		
+		
 
 		
 		
@@ -189,6 +189,12 @@ public class GameScreen extends JComponent {
 //		Enemy.draw(g2d,i);
 //		i++;
 //		if(i==84)i=0;
+		mobSpawner();
+		for(int i = 0;i<mobs.length;i++){
+			if(mobs[i].inGame){
+				mobs[i].physic();
+			}
+		}
 		
 		for(int i=0;i<mobs.length;i++){
 			if(mobs[i].inGame){
