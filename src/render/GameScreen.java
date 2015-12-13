@@ -15,6 +15,7 @@ import java.awt.event.MouseListener;
 import java.awt.event.MouseMotionListener;
 import java.awt.geom.AffineTransform;
 import java.awt.image.AffineTransformOp;
+import java.util.ArrayList;
 
 import javax.swing.JButton;
 import javax.swing.JComponent;
@@ -35,10 +36,10 @@ public class GameScreen extends JComponent {
 	 */
 	int a,b = 0;
 	private static final long serialVersionUID = 1L;
-	private int[] range = {50,80,100,120,200,150,120};
+	private int[] range = {70,80,100,120,200,150,120};
 	private int[] damage = {2,5,8,12,5,20,30};
 	private int[] cost = {100,150,200,250,300,400,500};
-	public static final AlphaComposite transcluentWhite = AlphaComposite.getInstance(AlphaComposite.SRC_OVER, 0.7f);
+	public static final AlphaComposite transcluentWhite = AlphaComposite.getInstance(AlphaComposite.SRC_OVER, 0.4f);
 	public static final AlphaComposite opaque = AlphaComposite.getInstance(AlphaComposite.SRC_OVER, 1);
 	private Point imgPoint[] = new Point[7];
 	
@@ -49,6 +50,8 @@ public class GameScreen extends JComponent {
 	public static AffineTransformOp aop;
 	
 	public static Mob[] mobs=new Mob[7];
+	public static ArrayList<Creep> mob = new ArrayList<Creep>();
+	
 	
 	static {
 		AffineTransform at = new AffineTransform();
@@ -157,7 +160,8 @@ public class GameScreen extends JComponent {
 			mobs[i]=new Mob();
 		}
 	}
-	int i=0;
+	
+	
 	@Override
 	protected void paintComponent(Graphics g) {
 		// TODO Auto-generated method stub
@@ -172,7 +176,9 @@ public class GameScreen extends JComponent {
 		drawClickImage(g);
 
 		addTurret(g);
-		Tower.draw(g);
+		Tower.drawArea(g);
+		Tower.drawTower(g);
+		Tower.attackMob();
 		
 		
 
@@ -185,8 +191,9 @@ public class GameScreen extends JComponent {
 //		Enemy.draw(g2d,i);
 //		i++;
 //		if(i==84)i=0;
+		
 		mobSpawner();
-		//System.out.println("123");
+		
 		for(int i = 0;i<mobs.length;i++){//calculate position
 			if(mobs[i].inGame){
 				mobs[i].physic();
@@ -288,14 +295,15 @@ public class GameScreen extends JComponent {
 		int y = InputUtility.getMouseY() / 50;
 		//Graphics2D g2d = (Graphics2D) g;
 		for (int i = 0; i < 7; i++) {
-			if (Player.player.money > cost[i] && InputUtility.isMouseLeftDown() && InputUtility.getClickOnTurret(i) && InputUtility.isAlreadyClick() && !Field.outOfField(x, y)) {
+			if (Player.player.money >= cost[i] && InputUtility.isMouseLeftDown() && InputUtility.getClickOnTurret(i)
+					&& InputUtility.isAlreadyClick() && !Field.outOfField(x, y)) {
 				InputUtility.setClickOnTurret(false, i);
 				InputUtility.setAlreadyClick(false);
 				InputUtility.setMouseLeftDown(false);
-//				System.out.println("turrret summon" + i);
-				Tower.addTower(new Tower(i, x, y, range[i], damage[i]));
-				Player.player.money -= cost[i];
-//				System.out.println(Tower.towers.get(is++).x);
+				if(Field.getTerrainAt(x, y) == 0){
+					Tower.addTower(new Tower(i, x, y, range[i], damage[i]));
+					Player.player.money -= cost[i];
+				}
 
 			}
 		}

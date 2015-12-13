@@ -11,7 +11,9 @@ public class Mob extends Rectangle{
 	public int mobWalk = 0;
 	public int up = 0,down = 1,right = 2,left = 3;
 	public int direction = right;
+	public int mobHealth;
 	public int mobID = -1;
+	public int[] mobHp = {40,50,100,200,500};
 	public boolean inGame = false;
 	public boolean isDead = false;
 	public boolean isUpward = false;
@@ -22,6 +24,7 @@ public class Mob extends Rectangle{
 	public Mob(){
 		
 	}
+	
 	int i = 0;
 	public void spawnMob(int mobID){
 		//System.out.println("spawnMob");
@@ -33,9 +36,8 @@ public class Mob extends Rectangle{
 				//System.out.println("h");
 			}
 		}
-		//System.out.println(this.x+" "+this.y);
-		//System.out.println(i++ + " "+inGame);
 		this.mobID = mobID;
+		this.mobHealth = mobHp[mobID];
 		inGame = true;
 		isDead = false;
 	}
@@ -147,13 +149,19 @@ public class Mob extends Rectangle{
 			return RenderManager.animationCreep3[2];
 		}
 	}
-	
+	int frameCount = 0,frameDo = 20;
 	public void draw(Graphics g,int id){
 		Graphics2D g2d = (Graphics2D)g;
 		if(inGame){
 			g2d.drawImage(selectEnemyPic(id)[i], null, x	,y);
-			i++;
+			if(frameCount >= frameDo){
+				i++;
+				frameCount = 0;
+			}else{
+				frameCount++;
+			}
 			if(i==4)i=0;
+			
 		}
 	}
 }

@@ -5,7 +5,7 @@ import javax.swing.JFrame;
 
 import logic.Tower;
 import render.GameScreen;
-import render.Spawn;
+
 
 
 
@@ -15,7 +15,7 @@ public class Main {
 	public static void main(String[] args) {
 
 		
-		JFrame frame = new JFrame("Tank game");
+		JFrame frame = new JFrame("Defenseder game");
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		
 		gameScreen = new GameScreen();

@@ -6,7 +6,7 @@ public class Player {
 	public final static Player player = new Player();
 	
 	public Player() {
-		this.money = 500;
+		this.money = 5000;
 		this.life = 30;
 	}
 	public static int getMoney() {
